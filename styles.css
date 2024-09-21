@@ -1,0 +1,400 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1e1e1e;
+    background-color: #1e1e1e; /* Full dark background */
+    color: #f3f3f3;
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 20%;
+    background-color: #2e2e2e;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+    height: 100vh;
+    height: 100vh; /* Ensuring the sidebar takes full height */
+
+}
+
+.profile {
+    margin-bottom: 30px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    background-color: #555;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.email {
+    font-size: 14px;
+    color: #bbb;
+}
+
+.menu {
+    list-style: none;
+}
+
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px 0;
+}
+
+.menu li a:hover {
+    background-color: #3c3c3c;
+    padding-left: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+
+.new-list-btn {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: auto; /* Ensuring button stays at the bottom */
+}
+
+.new-list-btn:hover {
+    background-color: #555;
+    transition: 0.3s;
+}
+
+
+/* Main Content */
+.main-content {
+    width: 50%;
+    padding: 20px;
+    background-color: #2a2a2a;
+    color: white;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+
+    max-height: 100vh;
+
+}
+
+.main-content h2 {
+    margin-bottom: 20px;
+    color: #f3f3f3;
+}
+
+
+.new-list-btn {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.new-list-btn:hover {
+    background-color: #555;
+    transition: 0.3s;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-item {
+    background-color: #3c3c3c;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.task-item:hover {
+    background-color: #505050;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Task Details */
+.task-details {
+    width: 30%;
+    padding: 20px;
+    background-color: #333;
+    box-shadow: -3px 0 5px rgba(0, 0, 0, 0.2);
+    color: white;
+    display: none;
+}
+
+#close-details-btn {
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Form Section */
+
+
+
+.task-details h3 {
+    margin-bottom: 20px;
+    color: #f3f3f3;
+}
+
+.task-details button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #444;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.task-details button:hover {
+    background-color: #555;
+}
+
+/* Make sure the entire background is filled */
+html, body {
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+}
+
+
+/* style form */
+/* Styles for the psychology test form */
+
+.form-section {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #fff;
+}
+
+
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-section label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+
+.form-section input[type="radio"] {
+    margin-right: 10px;
+}
+
+.form-section input[type="radio"] + label {
+    margin-right: 20px;
+}
+
+
+.form-section button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.form-section button:hover {
+    background-color: #555;
+}
+
+
+
+
+
+/* Task Details */
+.task-details {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 30%;
+    height: 100%;
+    background-color: #333;
+    box-shadow: -3px 0 5px rgba(0, 0, 0, 0.5);
+    color: white;
+    display: none; /* Hidden by default */
+    z-index: 1000;
+    padding: 20px;
+}
+
+#close-details-btn {
+    background-color: transparent;
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+
+
+/* fix main konten */
+/* Container styling */
+
+/* Main content */
+.main-content {
+    flex: 1;
+    transition: margin-left 0.3s ease;
+    padding: 20px;
+}
+
+.main-content.full-width {
+    margin-left: 0;
+}
+
+.main-content.centered {
+    margin-left: 250px; /* Sejajarkan dengan sidebar */
+}
+
+
+/* Style untuk container detail tugas */
+.task-details {
+    background-color: #1e1e1e;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Header dengan tombol close */
+.task-desk {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.title-side h3 {
+    font-size: 1.2rem;
+    color: white;
+}
+
+.close-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Detail tugas */
+.task-meta {
+    margin: 0;
+    font-size: 1rem;
+    color: #a9a9a9;
+}
+
+/* Style untuk tombol aksi */
+.task-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.task-action-btn {
+    background-color: #2d2d2d;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.task-action-btn:hover {
+    background-color: #3c3c3c;
+}
+
+.add-to-day-btn, .remind-btn, .extend-deadline-btn, .repeat-btn, .assign-to-btn, .add-note-btn, .edit-btn, .delete-btn {
+    display: block;
+    width: 100%;
+}
+
+.edit-btn[disabled] {
+    background-color: #444;
+    cursor: not-allowed;
+}
+
+.delete-btn {
+    background-color: #ff4c4c;
+}
+
+.delete-btn:hover {
+    background-color: #ff5c5c;
+}
+
+/* Optional: Atur jarak antar elemen */
+.task-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-bagian{
+    padding: 10px;
+}
+

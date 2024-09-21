@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnilaMate.Ai</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Tugas MSIB - Dark Mode</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            display: flex;
+            height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content {
+            flex-grow: 2;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .task-details {
+            width: 300px;
+            background-color: #333;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .task-details.hidden {
+            width: 0;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: none;
+        }
+
+        #close-details-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .task-details {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-item {
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        .task-desk {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+
+        .title-side {
+            padding-top: 40px;
+        }
+
+        /* Button tambah tugas di main content */
+        .new-list-btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e1e; /* Full dark background */
+            color: #f3f3f3;
+            display: flex;
+            height: 100vh;
+        }
+        
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 20%;
+            background-color: #2e2e2e;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+            height: 100vh; /* Ensuring the sidebar takes full height */
+        }
+        
+        .profile {
+            margin-bottom: 30px;
+        }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            background-color: #555;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        
+        .name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .email {
+            font-size: 14px;
+            color: #bbb;
+        }
+        
+        .menu {
+            list-style: none;
+        }
+        
+        
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px 0;
+        }
+        
+        .menu li a:hover {
+            background-color: #3c3c3c;
+            padding-left: 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        
+        .new-list-btn {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: auto; /* Ensuring button stays at the bottom */
+        }
+        
+        .new-list-btn:hover {
+            background-color: #555;
+            transition: 0.3s;
+        }
+        
+        /* Main Content */
+        .main-content {
+            width: 50%;
+            padding: 20px;
+            background-color: #2a2a2a;
+            color: white;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        
+        .main-content h2 {
+            margin-bottom: 20px;
+            color: #f3f3f3;
+        }
+        
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .task-item {
+            background-color: #3c3c3c;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .task-item:hover {
+            background-color: #505050;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Task Details */
+        .task-details {
+            width: 30%;
+            padding: 20px;
+            background-color: #333;
+            box-shadow: -3px 0 5px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        
+        .task-details h3 {
+            margin-bottom: 20px;
+            color: #f3f3f3;
+        }
+        
+        .task-details button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            background-color: #444;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .task-details button:hover {
+            background-color: #555;
+        }
+        
+        /* Make sure the entire background is filled */
+        html, body {
+            height: 100%;
+        }
+        
+        .container {
+            height: 100%;
+        }
+        
+        
+        /* style form */
+        /* Styles for the psychology test form */
+        .form-section {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-section h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #fff;
+        }
+        
+        .form-section form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-section label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .form-section input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .form-section input[type="radio"] + label {
+            margin-right: 20px;
+        }
+        
+        .form-section button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .form-section button:hover {
+            background-color: #555;
+        }
+        
+        .form-bagian{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <section class="profile">
+                <div class="avatar"></div>
+                <p class="name">Imam Ariadi</p>
+                <p class="email">imamariadi775@gmail.com</p>
+            </section>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#" id="link-penting">Penting</a></li>
+                    <li><a href="#" id="link-kegiatan">Kegiatan</a></li>
+                    <li><a href="#" id="link-tugas">Daftar Tugas</a></li>
+                    <li><a href="#" id="link-mengenali-diri">Mengenali Diri</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <div id="tugas" class="menu-item">
+                <h2>List Tugas</h2>
+                <ul class="task-list" id="tugasList"></ul>
+            </div>
+
+            <div id="tugasPopup" style="display: none; position: fixed; top: 20%; left: 30%; width: 40%; padding: 20px; background-color: #333; border: 2px solid black; z-index: 1000;">
+                <h3>Tambah Tugas</h3>
+                <label for="tugasInput">Nama Tugas:</label>
+                <input type="text" id="tugasInput"><br><br>
+                <label for="tugasDeadline">Deadline Tugas:</label>
+                <input type="date" id="tugasDeadline"><br><br>
+                <button onclick="submitTugas()">Tambah Tugas</button>
+                <button onclick="closePopup()">Tutup</button>
+            </div>
+            
+            <div id="kegiatan" class="menu-item">
+                <h2>List Kegiatan</h2>
+                <ul id="kegiatanList"></ul>
+            </div>
+
+            <div id="kegiatanPopup" style="display: none; position: fixed; top: 20%; left: 30%; width: 40%; padding: 20px; background-color: #333; border: 2px solid black; z-index: 1000;">
+                <h3>Tambah Kegiatan</h3>
+                <label for="kegiatanInput">Nama Kegiatan:</label>
+                <input type="text" id="kegiatanInput"><br><br>
+                <label for="kegiatanTanggal">Tanggal Kegiatan:</label>
+                <input type="date" id="kegiatanTanggal"><br><br>
+                <button onclick="submitKegiatan()">Tambah Kegiatan</button>
+                <button onclick="closeKegiatanPopup()">Tutup</button>
+            </div>
+            
+            <div id="penting-section" class="menu-item">
+                <h2>Penting</h2>
+                <h3>Tugas Terdekat:</h3>
+                <ul id="tugasPenting"></ul>
+                <h3>Kegiatan Terdekat:</h3>
+                <ul id="kegiatanPenting"></ul>
+            </div>
+
+            <section id="content-section">
+                <ul class="task-list" id="task-list">
+                    <!-- List tugas akan diisi dari database -->
+                </ul>
+            </section>
+            <section id="psychology-test" class="form-section">
+                <h3>Formulir Tes Psikologi</h3>
+                <form>
+                    <div class="form-bagian">
+                        <label for="question1">Apakah Anda merasa cemas ketika menghadapi situasi baru?</label><br>
+                        <input type="radio" name="q1" value="yes"> Ya
+                        <input type="radio" name="q1" value="no"> Tidak<br><br>
+                    </div>
+                    <div class="form-bagian">
+                    <div class="form-bagian"></div>
+                        <label for="question2">Bagaimana Anda menghadapi tekanan pekerjaan?</label><br>
+                        <input type="radio" name="q2" value="calm"> Tetap Tenang
+                        <input type="radio" name="q2" value="stress"> Menjadi Stres<br><br>
+                    </div>
+                    <div>
+                        <button type="submit">Kirim</button>
+                    </div>
+                </form>
+            </section>
+
+            <button class="new-list-btn" id="tombolAddTugas" id="openPopupButton" onclick="openPopup()">Tambahkan Tugas</button>
+            <button class="new-list-btn" id="tombolAddKegiatan" id="openKegiatanPopupButton" onclick="openKegiatanPopup()">Tambahkan Kegiatan</button>
+        </main>
+
+ <!-- Sidebar Detail Tugas -->
+ <div id="task-details" class="task-details hidden">
+    <header class="task-desk">
+        <button id="close-details-btn" class="close-btn">&times;</button> <!-- Tombol untuk menutup -->
+        <div class="title-side">
+            <h3 id="task-title">Pilih tugas untuk melihat detail</h3>
+        </div>
+    </header>
+    <section class="task-info">
+        <p id="task-deadline" class="task-meta"></p>
+        <p id="task-description" class="task-meta"></p>
+
+        <div class="task-buttons">
+            <button class="task-action-btn add-to-day-btn">Tambahkan ke Hari Saya</button>
+            <button class="task-action-btn remind-btn">Ingatkan saya</button>
+            <button class="task-action-btn extend-deadline-btn">Tambah tenggat</button>
+            <button class="task-action-btn repeat-btn">Ulangi</button>
+            <button class="task-action-btn assign-to-btn">Tugaskan ke</button>
+            <button class="task-action-btn add-note-btn">Tambahkan catatan</button>
+            <button id="edit-details-btn" class="task-action-btn edit-btn" disabled>Edit Penjelasan</button>
+            <button id="delete-task-btn" class="task-action-btn delete-btn">Tugas Selesai</button>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+    <script src="fungsi.js"></script>
+        </main>
+        <!-- Task Details -->
+        <aside class="task-details hidden" id="task-details">
+            <header class="task-desk">
+                <button id="close-details-btn">&times;</button> <!-- Tombol X untuk close -->
+                <div class="title-side">
+                    <h3 id="task-title">Pilih tugas untuk melihat detail</h3>
+                </div>
+            </header>
+            <section>
+                <button>Tambahkan ke Hari Saya</button>
+                <button>Ingatkan saya</button>
+                <button>Tambah tenggat</button>
+                <button>Ulangi</button>
+                <button>Tugaskan ke</button>
+                <button>Tambahkan catatan</button>
+                <button id="edit-details-btn" disabled>Edit Penjelasan</button>
+                <p id="task-description">Detail tentang tugas akan muncul di sini.</p>
+                <button id="delete-task-btn">Tugas Selesai</button> <!-- Tombol hapus tugas -->
+            </section>
+        </aside>
+    </div>
+
+</body>
+</html>
