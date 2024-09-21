@@ -42,9 +42,11 @@ function showTaskDetails(tugas) {
     const detailsSection = document.getElementById('task-details');
     document.getElementById('task-title').textContent = tugas.nama;
     document.getElementById('task-deadline').textContent = `Deadline: ${tugas.deadline}`;
-    document.getElementById('task-description').textContent = tugas.deskripsi;
-    detailsSection.classList.remove('hidden'); // Tampilkan sidebar detail
-    detailsSection.style.display = 'block'; // Pastikan sidebar muncul
+    document.getElementById('task-description').textContent = tugas.deskripsi || "Deskripsi tidak tersedia."; // Cek jika deskripsi kosong
+    console.log("udah tampil cok");
+     // Pastikan sidebar muncul
+    detailsSection.classList.remove("hidden");
+    
 }
 
 // Fungsi untuk menampilkan detail kegiatan di sidebar kanan
@@ -59,10 +61,6 @@ function showKegiatanDetails(kegiatan) {
 
 
 
-// Fungsi untuk menyembunyikan sidebar detail
-function hideTaskDetails() {
-    document.getElementById('task-details').style.display = 'none'; // Sembunyikan sidebar
-}
 
 function hideKegiatanDetails() {
     document.getElementById('kegiatan-details').style.display = 'none'; // Sembunyikan sidebar
@@ -254,18 +252,12 @@ document.getElementById('link-mengenali-diri').addEventListener('click', functio
 // Tombol untuk menutup detail tugas
 document.getElementById('close-details-btn').addEventListener('click', function() {
     document.getElementById('task-details').classList.add('hidden');
+    console.log('ini ilang cok');
 });
 
 
 // Fungsi untuk menampilkan detail tugas di sidebar kanan
-function showTaskDetails(tugas) {
-    const detailsSection = document.getElementById('task-details');
-    document.getElementById('task-title').textContent = tugas.nama;
-    document.getElementById('task-deadline').textContent = `Deadline: ${tugas.deadline}`;
-    document.getElementById('task-description').textContent = tugas.deskripsi || "Deskripsi tidak tersedia."; // Cek jika deskripsi kosong
-    detailsSection.style.display = 'block'; // Pastikan sidebar muncul
-    currentTugas = tugas;
-}
+
 
 // Fungsi untuk menghapus tugas yang dipilih
 function deleteTask() {
@@ -277,7 +269,9 @@ function deleteTask() {
         renderTugasList();
 
         // Sembunyikan detail setelah tugas dihapus
-        hideTaskDetails();
+        document.getElementById('close-details-btn').addEventListener('click', function() {
+            document.getElementById('task-details').classList.add('hidden');
+        });
 
         alert("Tugas berhasil dihapus!");
     }
@@ -287,13 +281,7 @@ function deleteTask() {
 document.getElementById('delete-task-btn').addEventListener('click', deleteTask);
 
 
-// Fungsi untuk menyembunyikan sidebar detail
-function hideTaskDetails() {
-    document.getElementById('task-details').style.display = 'none'; // Sembunyikan sidebar
-}
 
-// Tombol untuk menutup detail tugas
-document.getElementById('close-details-btn').addEventListener('click', hideTaskDetails);
 
 // Tampilkan menu tugas secara default saat halaman dibuka
 showMenu('tugas');
