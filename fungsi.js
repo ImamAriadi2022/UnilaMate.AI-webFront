@@ -231,6 +231,7 @@ document.getElementById("hapus-btn").addEventListener("click", function() {
     const taskTitle = document.getElementById('task-title').textContent;
     console.log(taskTitle);
     hapusTugas(taskTitle);
+    document.getElementById('task-details').classList.add('hidden');
 });
 
 
