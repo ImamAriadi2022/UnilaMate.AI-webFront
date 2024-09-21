@@ -1,6 +1,7 @@
 let tugasDB = [
     { nama: "Tugas 1", deadline: "2024-09-18" },
-    { nama: "Tugas 2", deadline: "2024-09-20" }
+    { nama: "Tugas 2", deadline: "2024-09-20" },
+    { nama: "Tugas 3", deadline: "2024-09-22" }
 ];
 
 let kegiatanDB = [
@@ -8,7 +9,7 @@ let kegiatanDB = [
     { nama: "Kegiatan 2", tanggal: "2024-09-21" }
 ];
 
-
+let currentTask; // current
 
 // Fungsi untuk menampilkan daftar tugas
 function renderTugasList() {
@@ -60,20 +61,6 @@ function showKegiatanDetails(kegiatan) {
 }
 
 
-
-
-function hideKegiatanDetails() {
-    document.getElementById('kegiatan-details').style.display = 'none'; // Sembunyikan sidebar
-}
-
-// Fungsi untuk menampilkan detail tugas
-function showTaskDetails(tugas) {
-    const detailsSection = document.getElementById('task-details');
-    document.getElementById('task-title').textContent = tugas.nama;
-    document.getElementById('task-description').textContent = `Deadline: ${tugas.deadline}`;
-    detailsSection.classList.remove('hidden'); // Tampilkan detail
-}
-
 // Fungsi untuk menambah tugas baru
 
 function openPopup() {
@@ -100,20 +87,6 @@ function submitTugas() {
     }
 }
 
-function addTugas() {
-    const namaTugas = document.getElementById('tugasInput').value;
-    const deadlineTugas = document.getElementById('tugasDeadline').value;
-
-    if (namaTugas && deadlineTugas) {
-        tugasDB.push({ nama: namaTugas, deadline: deadlineTugas });
-        renderTugasList();
-        document.getElementById('tugasInput').value = ''; // Kosongkan input setelah tugas ditambahkan
-        document.getElementById('tugasDeadline').value = '';
-        alert("Tugas berhasil ditambahkan!");
-    } else {
-        alert("Mohon isi nama tugas dan deadline!");
-    }
-}
 
 // Fungsi untuk menambah kegiatan baru
 function openKegiatanPopup() {
@@ -140,20 +113,6 @@ function submitKegiatan() {
     }
 }
 
-function addKegiatan() {
-    const namaKegiatan = document.getElementById('kegiatanInput').value;
-    const tanggalKegiatan = document.getElementById('kegiatanTanggal').value;
-
-    if (namaKegiatan && tanggalKegiatan) {
-        kegiatanDB.push({ nama: namaKegiatan, tanggal: tanggalKegiatan });
-        renderKegiatanList();
-        document.getElementById('kegiatanInput').value = ''; // Kosongkan input setelah kegiatan ditambahkan
-        document.getElementById('kegiatanTanggal').value = '';
-        alert("Kegiatan berhasil ditambahkan!");
-    } else {
-        alert("Mohon isi nama kegiatan dan tanggal!");
-    }
-}
 
 // Fungsi untuk menampilkan menu yang dipilih dan menyembunyikan menu lainnya
 function showMenu(menuId) {
@@ -256,32 +215,26 @@ document.getElementById('close-details-btn').addEventListener('click', function(
 });
 
 
-// Fungsi untuk menampilkan detail tugas di sidebar kanan
 
 
-// Fungsi untuk menghapus tugas yang dipilih
-function deleteTask() {
-    if (currentTugas) {
-        // Hapus tugas dari database
-        tugasDB = tugasDB.filter(tugas => tugas !== currentTugas);
-
-        // Render ulang daftar tugas
-        renderTugasList();
-
-        // Sembunyikan detail setelah tugas dihapus
-        document.getElementById('close-details-btn').addEventListener('click', function() {
-            document.getElementById('task-details').classList.add('hidden');
-        });
-
-        alert("Tugas berhasil dihapus!");
-    }
+// Fungsi untuk menghapus tugas berdasarkan nama
+function hapusTugas(namaTugas) {
+    tugasDB = tugasDB.filter(tugas => tugas.nama !== namaTugas);
+    renderTugasList(); // Tampilkan ulang daftar tugas setelah penghapusan
 }
 
-// Event listener untuk tombol "Tugas Selesai"
-document.getElementById('delete-task-btn').addEventListener('click', deleteTask);
+// Tampilkan tugas awal saat halaman dimuat
+renderTugasList()
+
+// Event listener untuk tombol hapus
+document.getElementById("hapus-btn").addEventListener("click", function() {
+    const taskTitle = document.getElementById('task-title').textContent;
+    console.log(taskTitle);
+    hapusTugas(taskTitle);
+});
 
 
 
 
-// Tampilkan menu tugas secara default saat halaman dibuka
-showMenu('tugas');
+
+
