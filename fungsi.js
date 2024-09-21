@@ -20,7 +20,19 @@ function renderTugasList() {
         let li = document.createElement('li');
         li.textContent = `${tugas.nama} - Deadline: ${tugas.deadline}`;
         li.classList.add('task-item');
-        li.onclick = function() { showTaskDetails(tugas); };
+        let activeTask = null;
+        li.onclick = function() {
+            if (activeTask === tugas) {
+                // Jika tugas yang sama di klik lagi, tutup detail tugas
+                document.getElementById('task-details').classList.add('hidden');
+                activeTask = null; // Reset activeTask
+            } else {
+                // Tampilkan detail tugas
+                showTaskDetails(tugas);
+                activeTask = tugas; // Set activeTask ke tugas yang baru
+            }
+        };
+        
         tugasList.appendChild(li);
     });
 }
@@ -44,7 +56,6 @@ function showTaskDetails(tugas) {
     document.getElementById('task-title').textContent = tugas.nama;
     document.getElementById('task-deadline').textContent = `Deadline: ${tugas.deadline}`;
     document.getElementById('task-description').textContent = tugas.deskripsi || "Deskripsi tidak tersedia."; // Cek jika deskripsi kosong
-    console.log("udah tampil cok");
      // Pastikan sidebar muncul
     detailsSection.classList.remove("hidden");
     
