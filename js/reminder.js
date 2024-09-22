@@ -12,14 +12,15 @@ flatpickr("#time-picker", {
   });
   
 
-function toggleDropdown() {
+  function toggleDropdown() {
     var dropdown = document.getElementById("reminder-dropdown");
-    if (dropdown.style.display === "none") {
+    if (dropdown.style.display === "none" || dropdown.style.display === "") {
       dropdown.style.display = "block";
     } else {
       dropdown.style.display = "none";
     }
   }
+  
   
   function setReminder(time) {
     alert("Reminder set for: " + time);

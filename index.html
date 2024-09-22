@@ -503,26 +503,25 @@
         <p id="task-description" class="task-meta"></p>
 
         <div class="task-buttons">
-
             <!-- fitur selanjutnya dari tombol ingatkan saya -->
             <div class="reminder-details">
                 <button class="task-action-btn" onclick="toggleDropdown()">Ingatkan saya</button>
-                <div id="reminder-dropdown" class="dropdown-content" style="display: none;">
-                    <button onclick="setReminder('Akhir Hari')">Akhir Hari (18:00)</button>
-                    <button onclick="setReminder('Besok Pagi')">Besok (09:00)</button>
-                    <button onclick="setReminder('Minggu Depan')">Minggu Depan</button>
-                    <!-- <label for="custom-date">Pilih Hari dan Jam:</label>
-                    <input class="task-action-btn" type="datetime-local" id="custom-date" onchange="setCustomReminder()"> -->
-                    <!-- Pilihan waktu dengan Flatpickr -->
-                    <label for="time-picker">Pilih Waktu Pengingat:</label>
-                    <input id="time-picker" class="time-picker" placeholder="Pilih Waktu" readonly>
-
-
+                <div id="reminder-dropdown" style="display: none;">
+                    <div  style="position: absolute; background:#333333; padding-right:1rem; border-color: #fff;">                        
+                        <span class="melayang">
+                            <button onclick="setReminder('Akhir Hari')">Akhir Hari (18:00)</button>
+                            <button onclick="setReminder('Besok Pagi')">Besok (09:00)</button>
+                            <button onclick="setReminder('Minggu Depan')">Minggu Depan</button>
+                            <!-- <label for="custom-date">Pilih Hari dan Jam:</label>
+                            <input class="task-action-btn" type="datetime-local" id="custom-date" onchange="setCustomReminder()"> -->
+                            <!-- Pilihan waktu dengan Flatpickr -->
+                            <label for="time-picker">Pilih Waktu Pengingat:</label>
+                            <input id="time-picker" class="time-picker" placeholder="Pilih Waktu" readonly>
+                        </span>
+                    </div>
                 </div>
               </div>
 
-
-            <button class="task-action-btn extend-deadline-btn">Tambah tenggat</button>
             <button class="task-action-btn add-note-btn">Tambahkan catatan</button>
             <button id="edit-details-btn" class="task-action-btn edit-btn">Rekomendasi Menyelesaikan Tugas</button>
             <button id="hapus-btn" class="task-action-btn" style="background-color:#03b026">Tugas Selesai</button>

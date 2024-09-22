@@ -1,7 +1,7 @@
-.reminder-details {
+/* .reminder-details {
     position: relative;
     display: inline-flex;
-  }
+  } */
   
   .reminder-btn {
     background-color: #4CAF50;
@@ -10,35 +10,18 @@
     border: none;
     cursor: pointer;
   }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content button {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .dropdown-content input {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    box-sizing: border-box;
-  }
-  
-  .dropdown-content button:hover, .dropdown-content input:hover {
-    background-color: #ddd;
+
+
+
+ span .melayang {
+    position: absolute; /* Menyebabkan dropdown tampil di atas elemen lain */
+    top: 50px; /* Atur jarak dari elemen pemicunya */
+    left: 0; /* Atur posisi horizontal */
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 200px; /* Atur lebar dropdown */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Agar dropdown muncul di atas elemen lain */
   }
   
 
