@@ -3,11 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css untuk menu ingatkan saya -->
+     <link rel="stylesheet" href="reminder.css">
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <title>UnilaMate.Ai</title>
     <link rel="stylesheet" href="styles.css">
-    <title>Tugas MSIB - Dark Mode</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
+/* Global selector for all elements within Flatpickr */
+.flatpickr-calendar * {
+    background-color: #333333 !important; /* Force black background for all elements */
+    color: #ffffff !important; /* Force white text for all elements */
+}
+
+/* Specific selectors for individual Flatpickr components */
+/* Calendar Container */
+.flatpickr-calendar {
+    background-color: #333333 !important;
+    border: 1px solid #555555;
+}
+
+/* Month/Year header */
+.flatpickr-months .flatpickr-month {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+    color: #ffffff !important;
+}
+
+/* Weekdays (Sun, Mon, etc.) */
+.flatpickr-weekdays {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+.flatpickr-weekdays span {
+    color: #ffffff !important;
+}
+
+/* Days */
+.flatpickr-days {
+    background-color: #333333 !important;
+}
+
+.flatpickr-day {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+.flatpickr-day.today {
+    background-color: #444444 !important; /* Slightly lighter for today */
+    color: #ffffff !important;
+}
+
+.flatpickr-day.selected {
+    background-color: #1E90FF !important; /* Blue for selected day */
+    color: #ffffff !important;
+}
+
+/* Time Picker */
+.flatpickr-time {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+}
+
+.flatpickr-time input {
+    background-color: #333 !important;
+    color: #ffffff !important;
+    border: 1px solid #555555;
+}
+
+/* Dropdown Month/Year */
+.flatpickr-monthDropdown-months,
+.flatpickr-monthDropdown-months select,
+.flatpickr-monthDropdown-months select option {
+    background-color: #333 !important;
+    color: #ffffff !important;
+}
+
+/* Optional: Hover effect for better UX */
+.flatpickr-day:hover {
+    background-color: #444444 !important; /* Slightly lighter hover effect */
+}
+
+
+        
         .container {
             display: flex;
             height: 100vh;
@@ -415,17 +503,40 @@
         <p id="task-description" class="task-meta"></p>
 
         <div class="task-buttons">
-            <button class="task-action-btn remind-btn">Ingatkan saya</button>
+
+            <!-- fitur selanjutnya dari tombol ingatkan saya -->
+            <div class="reminder-details">
+                <button class="task-action-btn" onclick="toggleDropdown()">Ingatkan saya</button>
+                <div id="reminder-dropdown" class="dropdown-content" style="display: none;">
+                    <button onclick="setReminder('Akhir Hari')">Akhir Hari (18:00)</button>
+                    <button onclick="setReminder('Besok Pagi')">Besok (09:00)</button>
+                    <button onclick="setReminder('Minggu Depan')">Minggu Depan</button>
+                    <!-- <label for="custom-date">Pilih Hari dan Jam:</label>
+                    <input class="task-action-btn" type="datetime-local" id="custom-date" onchange="setCustomReminder()"> -->
+                    <!-- Pilihan waktu dengan Flatpickr -->
+                    <label for="time-picker">Pilih Waktu Pengingat:</label>
+                    <input id="time-picker" class="time-picker" placeholder="Pilih Waktu" readonly>
+
+
+                </div>
+              </div>
+
+
             <button class="task-action-btn extend-deadline-btn">Tambah tenggat</button>
             <button class="task-action-btn add-note-btn">Tambahkan catatan</button>
             <button id="edit-details-btn" class="task-action-btn edit-btn">Rekomendasi Menyelesaikan Tugas</button>
             <button id="hapus-btn" class="task-action-btn" style="background-color:#03b026">Tugas Selesai</button>
+
+
+
+              
         </div>
     </section>
 </div>
 
 </main>
     <script src="fungsi.js"></script>
-    <script src="js/taskSelesai.js"></script>
+    <script src="js/reminder.js"></script>
+
 </body>
 </html>

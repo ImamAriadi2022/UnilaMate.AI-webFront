@@ -1,0 +1,81 @@
+.reminder-details {
+    position: relative;
+    display: inline-flex;
+  }
+  
+  .reminder-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-content input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    box-sizing: border-box;
+  }
+  
+  .dropdown-content button:hover, .dropdown-content input:hover {
+    background-color: #ddd;
+  }
+  
+
+
+  .time-picker {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #333;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #333;
+  }
+  
+  /* Ubah background dari flatpickr popup menjadi hitam */
+.flatpickr-calendar {
+  background-color: #000000;  /* Background hitam */
+  color: #ffffff;             /* Teks putih */
+  border: 1px solid #ffffff;  /* Border putih */
+}
+
+/* Ubah warna dropdown waktu menjadi hitam */
+.flatpickr-time .numInputWrapper {
+  background-color: #000000;  /* Background hitam */
+}
+
+.flatpickr-time input {
+  background-color: #000000;  /* Background hitam untuk input waktu */
+  color: #ffffff;             /* Teks putih */
+}
+
+/* Ubah warna hover pada elemen waktu */
+.flatpickr-time input:hover {
+  background-color: #1a1a1a;  /* Background sedikit lebih terang saat di-hover */
+}
+
+/* Style pemisah titik dua (:) di time picker */
+.flatpickr-time .flatpickr-time-separator {
+  color: #ffffff;             /* Warna putih untuk separator (:) */
+}
