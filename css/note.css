@@ -1,0 +1,23 @@
+.note-section {
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: #333;
+    border-radius: 10%;
+    border-color: #fff;
+}
+
+input{
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+}
+
+.input-note{
+    padding: 1rem;
+}

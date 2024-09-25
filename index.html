@@ -6,6 +6,9 @@
     <!-- css untuk menu ingatkan saya -->
      <link rel="stylesheet" href="reminder.css">
 
+     <!-- css untuk div note -->
+      <link rel="stylesheet" href="css/note.css">
+
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -522,7 +525,18 @@
                 </div>
               </div>
 
-            <button class="task-action-btn add-note-btn">Tambahkan catatan</button>
+            <!-- ini untuk menambahkan deskripsi -->
+            <button onclick="catatan()" class="task-action-btn add-note-btn">Tambahkan catatan</button>
+
+            <!-- div untuk extend fitur dropNote -->
+            <div id="note-section" class="note-section">
+                <div class="input-note">
+                    <input placeholder="Masukkan deskripsi tugas" id="note-input" type="textarea"> <br>
+                </div>
+                <button id="save-note-btn" class="save-note-btn">Simpan</button>
+                <button id="back-note-btn" onclick="catatan()" class="close">Kembali</button>
+            </div>
+
             <button id="edit-details-btn" class="task-action-btn edit-btn">Rekomendasi Menyelesaikan Tugas</button>
             <button id="hapus-btn" class="task-action-btn" style="background-color:#03b026">Tugas Selesai</button>
 
@@ -536,6 +550,7 @@
 </main>
     <script src="fungsi.js"></script>
     <script src="js/reminder.js"></script>
+    <script src="js/noted.js"></script>
 
 </body>
 </html>
