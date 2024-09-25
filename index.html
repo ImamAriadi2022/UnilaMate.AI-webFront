@@ -9,6 +9,9 @@
      <!-- css untuk div note -->
       <link rel="stylesheet" href="css/note.css">
 
+      <!-- ini untuk css rekomendasi mengerjakan tugas -->
+    <link rel="stylesheet" href="css/rekomendasi.css">
+
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
@@ -537,7 +540,10 @@
                 <button id="back-note-btn" onclick="catatan()" class="close">Kembali</button>
             </div>
 
-            <button id="edit-details-btn" class="task-action-btn edit-btn">Rekomendasi Menyelesaikan Tugas</button>
+            <button onclick="rekomendasiBtn()" id="edit-details-btn" class="task-action-btn edit-btn">Rekomendasi Menyelesaikan Tugas</button>
+
+
+
             <button id="hapus-btn" class="task-action-btn" style="background-color:#03b026">Tugas Selesai</button>
 
 
@@ -545,12 +551,32 @@
               
         </div>
     </section>
+    
+    
+    <!-- ini untuk next popup div untuk rekomendasi -->
+    <div id="rekomendasi" class="rekomendasi hidden" style="display: none">
+        <header class="deskripsi">
+            <span class="deskripsi">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus praesentium ea officiis, delectus voluptatum eligendi. Beatae porro dicta, laudantium accusantium eius consectetur veritatis ullam pariatur, reprehenderit placeat soluta hic delectus.  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium quo voluptas quam, aut et repellat officiis nobis explicabo itaque culpa, saepe iusto eius vitae tempore, maxime tenetur fuga. Voluptatum, veniam? . Lorem ipsum dolor sit amet consectetur adipisicing elit. A, nisi, amet eum quo unde natus quod animi distinctio dolores nostrum ut excepturi ipsa atque hic exercitationem autem voluptate perspiciatis sit!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reprehenderit nesciunt, ad molestiae dolores est ea fuga impedit aut fugit magnam voluptates nobis omnis aperiam dolorem provident quam, aliquam consequuntur.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus praesentium ea officiis, delectus voluptatum eligendi. Beatae porro dicta, laudantium accusantium eius consectetur veritatis ullam pariatur, reprehenderit placeat soluta hic delectus.  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium quo voluptas quam, aut et repellat officiis nobis explicabo itaque culpa, saepe iusto eius vitae tempore, maxime tenetur fuga. Voluptatum, veniam? . Lorem ipsum dolor sit amet consectetur adipisicing elit. A, nisi, amet eum quo unde natus quod animi distinctio dolores nostrum ut excepturi ipsa atque hic exercitationem autem voluptate perspiciatis sit!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reprehenderit nesciunt, ad molestiae dolores est ea fuga impedit aut fugit magnam voluptates nobis omnis aperiam dolorem provident quam, aliquam consequuntur.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus praesentium ea officiis, delectus voluptatum eligendi. Beatae porro dicta, laudantium accusantium eius consectetur veritatis ullam pariatur, reprehenderit placeat soluta hic delectus.  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium quo voluptas quam, aut et repellat officiis nobis explicabo itaque culpa, saepe iusto eius vitae tempore, maxime tenetur fuga. Voluptatum, veniam? . Lorem ipsum dolor sit amet consectetur adipisicing elit. A, nisi, amet eum quo unde natus quod animi distinctio dolores nostrum ut excepturi ipsa atque hic exercitationem autem voluptate perspiciatis sit!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reprehenderit nesciunt, ad molestiae dolores est ea fuga impedit aut fugit magnam voluptates nobis omnis aperiam dolorem provident quam, aliquam consequuntur.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus praesentium ea officiis, delectus voluptatum eligendi. Beatae porro dicta, laudantium accusantium eius consectetur veritatis ullam pariatur, reprehenderit placeat soluta hic delectus.  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium quo voluptas quam, aut et repellat officiis nobis explicabo itaque culpa, saepe iusto eius vitae tempore, maxime tenetur fuga. Voluptatum, veniam? . Lorem ipsum dolor sit amet consectetur adipisicing elit. A, nisi, amet eum quo unde natus quod animi distinctio dolores nostrum ut excepturi ipsa atque hic exercitationem autem voluptate perspiciatis sit!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reprehenderit nesciunt, ad molestiae dolores est ea fuga impedit aut fugit magnam voluptates nobis omnis aperiam dolorem provident quam, aliquam consequuntur.</p>
+            </span>
+        </header>
+        <section class="btnBack">
+            <div class="close">
+                <button onclick="rekomendasiBtn()">kembali</button>
+            </div>
+        </section>
+    </div>
+    <!-- ini untuk next popup div untuk rekomendasi -->
 </div>
 
 </main>
     <script src="fungsi.js"></script>
     <script src="js/reminder.js"></script>
     <script src="js/noted.js"></script>
+    <script src="js/rekomendasi.js"></script>
 
 </body>
 </html>
