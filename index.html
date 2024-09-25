@@ -9,6 +9,9 @@
      <!-- css untuk div note -->
       <link rel="stylesheet" href="css/note.css">
 
+      <!-- test-psikologi -->
+    <link rel="stylesheet" href="css/test-psikologi.css">
+
       <!-- ini untuk css rekomendasi mengerjakan tugas -->
     <link rel="stylesheet" href="css/rekomendasi.css">
 
@@ -657,7 +660,7 @@
                     </div>
                     <!-- pertanyaan ke tigabelas -->
                     <div>
-                        <button onclick="testPsikologi()" onsubmit="testPsikologi()" type="submit">Kirim</button>
+                        <button onclick="testPsikologi()">Kirim</button>
                     </div>
                 </form>
             </section>
@@ -722,6 +725,7 @@
         </div>
     </section>
     
+
     
     <!-- ini untuk next popup div untuk rekomendasi -->
     <div id="rekomendasi" class="rekomendasi hidden" style="display: none">
@@ -741,8 +745,16 @@
     </div>
     <!-- ini untuk next popup div untuk rekomendasi -->
 </div>
+    <!-- berhasil submit test psikologi-->
+    <div id="psikologi-div" class="psikologi-div" style="display: none">
+        <div>
+            <header class="ini-selesai">
+                <h3 class="test-psikologi-text"> Tesk Psikologi Selesai</h3>
+            </header>
+        </div>
+    </div>
+    <!-- berhasil submit test psikologi -->
 
-</main>
     <script src="fungsi.js"></script>
     <script src="js/reminder.js"></script>
     <script src="js/noted.js"></script>
