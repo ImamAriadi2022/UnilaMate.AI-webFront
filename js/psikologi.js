@@ -10,3 +10,13 @@ function testPsikologi(){
         psikologi.style.display = "block";
      }
 }
+
+
+function closePopUpAllert(){
+    let psikologi = document.getElementById("psikologi-div");
+    if (psikologi.style.display == "block"){
+        psikologi.style.display = "none";
+     } else {
+        psikologi.style.display = "block";
+     }
+}
