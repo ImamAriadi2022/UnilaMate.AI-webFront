@@ -1,5 +1,5 @@
 let tugasDB = [
-    { nama: "Tugas 1", deadline: "2024-09-18" },
+    { nama: "Tugas 1", deadline: "2024-09-18", },
     { nama: "Tugas 2", deadline: "2024-09-20" },
     { nama: "Tugas 3", deadline: "2024-09-22" }
 ];
@@ -250,3 +250,6 @@ document.getElementById("hapus-btn").addEventListener("click", function() {
 
 
 
+window.onload = function() {
+    renderPenting(); // Jika bagian penting perlu di-render di awal
+};
