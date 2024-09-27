@@ -463,9 +463,20 @@
                 <input type="text" id="kegiatanInput"><br><br>
                 <label for="kegiatanTanggal">Tanggal Kegiatan:</label>
                 <input type="date" id="kegiatanTanggal"><br><br>
-                <button onclick="submitKegiatan()">Tambah Kegiatan</button>
-                <button onclick="closeKegiatanPopup()">Tutup</button>
+                <button class="new-list-btn" onclick="submitKegiatan()">Tambah Kegiatan</button>
+                <button class="new-list-btn" onclick="closeKegiatanPopup()">Tutup</button>
             </div>
+
+            <!-- BUAT EDIT DEADLINE TUGAS -->
+            <div id="editPopup" style="display:none;">
+                <h3>Edit Deadline Tugas</h3>
+                <input type="text" id="editTugasInput" disabled /> <!-- Nama tugas tidak dapat diubah -->
+                <input type="date" id="editTugasDeadline" />
+                <input type="hidden" id="editTugasIndex" /> <!-- Simpan indeks tugas yang sedang diedit -->
+                <button class="new-list-btn" onclick="editDeadlineTugas()">Simpan Perubahan</button>
+                <button class="new-list-btn" onclick="closeEditPopup()">Batal</button>
+            </div>
+            <!-- BUAT EDIT DEADLINE TUGAS -->
             
             <div id="penting-section" class="menu-item">
                 <h2>Penting</h2>
@@ -490,11 +501,28 @@
                                 1: Saya merasa cemas dan ingin menghindari <br>
                                 5: Saya merasa sangat nyaman dan bersemangat untuk mengambil alih
                             </label><br> <br>
-                            <input type="radio" name="q1" value="1"> Saya merasa cemas dan ingin menghindari |
-                            <input type="radio" name="q1" value="2"> |
-                            <input type="radio" name="q1" value="3">  Netral |
-                            <input type="radio" name="q1" value="4"> |
-                            <input type="radio" name="q1" value="5"> Saya merasa sangat nyaman dan bersemangat untuk mengambil alih<br><br>
+                            <article class="quest-form-psi">
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="1">
+                                    <label>Saya merasa cemas dan ingin menghindari</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="2">
+                                    <label>Jarang merasa cemas</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="3">
+                                    <label>Netral</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="4">
+                                    <label>Sering merasa nyaman</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="5">
+                                    <label>Saya merasa sangat nyaman dan bersemangat untuk mengambil alih</label>
+                                </div>
+                            </article>                            
                         </div>
                         <!-- pertanyaan pertama -->
                     </div>
@@ -506,11 +534,28 @@
                             1: Saya merasa lelah dan butuh waktu sendirian untuk mengisi energi <br>
                             5: Saya merasa energik dan siap untuk kegiatan berikutnya
                         </label><br> <br>
-                        <input type="radio" name="q2" value="1"> Saya merasa lelah dan butuh waktu sendirian untuk mengisi energi |
-                        <input type="radio" name="q2" value="2"> |
-                        <input type="radio" name="q2" value="3">  Netral |
-                        <input type="radio" name="q2" value="4"> |
-                        <input type="radio" name="q2" value="5"> Saya merasa energik dan siap untuk kegiatan berikutnya<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q2" value="1">
+                                <label>Saya merasa lelah dan butuh waktu sendirian untuk mengisi energi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q2" value="2">
+                                <label>Jarang merasa lelah</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q2" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q2" value="4">
+                                <label>Sering merasa energik</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q2" value="5">
+                                <label>Saya merasa energik dan siap untuk kegiatan berikutnya</label>
+                            </div>
+                        </article>                        
                     </div>
                     <!-- pertanyaan kedua -->
                 </div>
@@ -523,11 +568,28 @@
                             1: Saya jarang merasa nyaman berbicara dengan orang asing <br>
                             5: Saya selalu merasa nyaman berbicara dengan orang asing
                         </label><br> <br>
-                        <input type="radio" name="q3" value="1"> Saya jarang merasa nyaman berbicara dengan orang asing |
-                        <input type="radio" name="q3" value="2"> |
-                        <input type="radio" name="q3" value="3">  Netral |
-                        <input type="radio" name="q3" value="4"> |
-                        <input type="radio" name="q3" value="5"> Saya selalu merasa nyaman berbicara dengan orang asing<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q3" value="1">
+                                <label>Saya jarang merasa nyaman berbicara dengan orang asing</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q3" value="2">
+                                <label>Jarang merasa nyaman</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q3" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q3" value="4">
+                                <label>Sering merasa nyaman</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q3" value="5">
+                                <label>Saya selalu merasa nyaman berbicara dengan orang asing</label>
+                            </div>
+                        </article>                        
                     </div>
                     <!-- pertanyaan ketiga -->
                 </div>
@@ -539,11 +601,28 @@
                             1: Saya lebih suka merenung dan memikirkan sendiri <br>
                             5: Saya lebih suka mendiskusikannya dengan orang lain
                         </label><br> <br>
-                        <input type="radio" name="q4" value="1"> Saya lebih suka merenung dan memikirkan sendiri |
-                        <input type="radio" name="q4" value="2"> |
-                        <input type="radio" name="q4" value="3">  Netral |
-                        <input type="radio" name="q4" value="4"> |
-                        <input type="radio" name="q4" value="5"> Saya lebih suka mendiskusikannya dengan orang lain<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q4" value="1">
+                                <label>Saya lebih suka merenung dan memikirkan sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q4" value="2">
+                                <label>Jarang merenung sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q4" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q4" value="4">
+                                <label>Sering berdiskusi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q4" value="5">
+                                <label>Saya lebih suka mendiskusikannya dengan orang lain</label>
+                            </div>
+                        </article>                        
                     </div>
                     <!-- pertanyaan keempat -->
                 </div>
@@ -555,11 +634,29 @@
                             1: Sangat sering, saya cenderung lebih mengamati daripada terlibat langsung <br>
                             5: Jarang, saya lebih suka segera terlibat dan berbicara dengan orang lain
                         </label><br> <br>
-                        <input type="radio" name="q5" value="1"> Sangat sering, saya cenderung lebih mengamati daripada terlibat langsung |
-                        <input type="radio" name="q5" value="2"> |
-                        <input type="radio" name="q5" value="3">  Netral |
-                        <input type="radio" name="q5" value="4"> |
-                        <input type="radio" name="q5" value="5"> Jarang, saya lebih suka segera terlibat dan berbicara dengan orang lain<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q5" value="1">
+                                <label>Sangat sering, saya cenderung lebih mengamati daripada terlibat langsung</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q5" value="2">
+                                <label>Jarang mengamati</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q5" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q5" value="4">
+                                <label>Sering terlibat langsung</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q5" value="5">
+                                <label>Jarang, saya lebih suka segera terlibat dan berbicara dengan orang lain</label>
+                            </div>
+                        </article>
+                        
                     </div>
                     <!-- pertanyaan keLima -->
                 </div>
@@ -571,11 +668,28 @@
                             1: Saya merasa cepat lelah atau cemas dalam keramaian <br>
                             5: Saya merasa penuh energi dan senang berada di lingkungan yang ramai
                         </label><br> <br>
-                        <input type="radio" name="q6" value="1"> Saya merasa cepat lelah atau cemas dalam keramaian |
-                        <input type="radio" name="q6" value="2"> |
-                        <input type="radio" name="q6" value="3">  Netral |
-                        <input type="radio" name="q6" value="4"> |
-                        <input type="radio" name="q6" value="5"> Saya merasa penuh energi dan senang berada di lingkungan yang ramai<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q6" value="1">
+                                <label>Saya merasa cepat lelah atau cemas dalam keramaian</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q6" value="2">
+                                <label>Jarang merasa cemas</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q6" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q6" value="4">
+                                <label>Sering merasa nyaman</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q6" value="5">
+                                <label>Saya merasa penuh energi dan senang berada di lingkungan yang ramai</label>
+                            </div>
+                        </article>                        
                     </div>
                     <!-- pertanyaan keenam -->
                 </div>
@@ -587,11 +701,29 @@
                             1: Sangat jarang, saya menunggu orang lain yang memulai percakapan <br>
                             5: Sangat sering, saya cenderung langsung memulai percakapan dengan orang lain
                         </label><br> <br>
-                        <input type="radio" name="q7" value="1"> Sangat jarang, saya menunggu orang lain yang memulai percakapan |
-                        <input type="radio" name="q7" value="2"> |
-                        <input type="radio" name="q7" value="3">  Netral |
-                        <input type="radio" name="q7" value="4"> |
-                        <input type="radio" name="q7" value="5"> Sangat sering, saya cenderung langsung memulai percakapan dengan orang lain<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q7" value="1">
+                                <label>Sangat jarang, saya menunggu orang lain yang memulai percakapan</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q7" value="2">
+                                <label>Jarang</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q7" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q7" value="4">
+                                <label>Sering</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q7" value="5">
+                                <label>Sangat sering, saya cenderung langsung memulai percakapan dengan orang lain</label>
+                            </div>
+                        </article>
+                        
                     </div>
                     <!-- pertanyaan ke tujuh -->
                 </div>
@@ -603,11 +735,28 @@
                             1: Saya lebih suka menghabiskan waktu sendiri dengan membaca atau aktivitas pribadi <br>
                             5: Saya lebih suka berkumpul dengan teman atau keluarga untuk mengisi energi
                         </label><br> <br>
-                        <input type="radio" name="q8" value="1"> Saya lebih suka menghabiskan waktu sendiri dengan membaca atau aktivitas pribadi |
-                        <input type="radio" name="q8" value="2"> |
-                        <input type="radio" name="q8" value="3">  Netral |
-                        <input type="radio" name="q8" value="4"> |
-                        <input type="radio" name="q8" value="5"> Saya lebih suka berkumpul dengan teman atau keluarga untuk mengisi energi<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q8" value="1">
+                                <label>Saya lebih suka menghabiskan waktu sendiri dengan membaca atau aktivitas pribadi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q8" value="2">
+                                <label>Jarang menghabiskan waktu sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q8" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q8" value="4">
+                                <label>Sering berkumpul dengan orang lain</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q8" value="5">
+                                <label>Saya lebih suka berkumpul dengan teman atau keluarga untuk mengisi energi</label>
+                            </div>
+                        </article>                        
                     </div>
                     <!-- pertanyaan ke delapan -->
                 </div>
@@ -619,11 +768,28 @@
                             1: Sangat penting, saya perlu waktu sendiri secara teratur <br>
                             5: Tidak terlalu penting, saya lebih suka menghabiskan waktu bersama orang lain
                         </label><br> <br>
-                        <input type="radio" name="q9" value="1"> Sangat penting, saya perlu waktu sendiri secara teratur |
-                        <input type="radio" name="q9" value="2"> |
-                        <input type="radio" name="q9" value="3">  Netral |
-                        <input type="radio" name="q9" value="4"> |
-                        <input type="radio" name="q9" value="5"> Tidak terlalu penting, saya lebih suka menghabiskan waktu bersama orang lain<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q9" value="1">
+                                <label>Sangat penting, saya perlu waktu sendiri secara teratur</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q9" value="2">
+                                <label>Jarang merasa perlu waktu sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q9" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q9" value="4">
+                                <label>Sering menghabiskan waktu sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q9" value="5">
+                                <label>Tidak terlalu penting, saya lebih suka menghabiskan waktu bersama orang lain</label>
+                            </div>
+                        </article>                        
                     </div>
                     <!-- pertanyaan ke sembilan -->
                 </div>
@@ -635,11 +801,28 @@
                             1: Tidak, saya cenderung diam dan lebih memperhatikan <br>
                             5: Ya, saya semakin banyak berbicara ketika ada banyak orang
                         </label><br> <br>
-                        <input type="radio" name="q10" value="1"> Tidak, saya cenderung diam dan lebih memperhatikan |
-                        <input type="radio" name="q10" value="2"> |
-                        <input type="radio" name="q10" value="3">  Netral |
-                        <input type="radio" name="q10" value="4"> |
-                        <input type="radio" name="q10" value="5"> Ya, saya semakin banyak berbicara ketika ada banyak orang<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q10" value="1">
+                                <label>Tidak, saya cenderung diam dan lebih memperhatikan</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q10" value="2">
+                                <label>Jarang berbicara dalam keramaian</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q10" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q10" value="4">
+                                <label>Sering berbicara dengan orang lain</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q10" value="5">
+                                <label>Ya, saya semakin banyak berbicara ketika ada banyak orang</label>
+                            </div>
+                        </article>                        
                     </div>
                     <!-- pertanyaan ke sepuluh -->
                 </div>
@@ -651,11 +834,28 @@
                             1: Tidak terlalu penting, saya lebih bahagia dengan aktivitas pribadi <br>
                             5: Sangat penting, saya merasa lebih bahagia ketika sering bersosialisasi
                         </label><br> <br>
-                        <input type="radio" name="q11" value="1"> Tidak terlalu penting, saya lebih bahagia dengan aktivitas pribadi |
-                        <input type="radio" name="q11" value="2"> |
-                        <input type="radio" name="q11" value="3">  Netral |
-                        <input type="radio" name="q11" value="4"> |
-                        <input type="radio" name="q11" value="5"> Sangat penting, saya merasa lebih bahagia ketika sering bersosialisasi<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q11" value="1">
+                                <label>Tidak terlalu penting, saya lebih bahagia dengan aktivitas pribadi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q11" value="2">
+                                <label>Jarang merasa perlu bersosialisasi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q11" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q11" value="4">
+                                <label>Sering merasa perlu untuk bersosialisasi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q11" value="5">
+                                <label>Sangat penting, saya merasa lebih bahagia ketika sering bersosialisasi</label>
+                            </div>
+                        </article>                        
                     </div>
                     <!-- pertanyaan ke sebelas -->
                 </div>
@@ -667,11 +867,28 @@
                             1: Saya merasa sangat nyaman dan senang <br>
                             5: Saya merasa sangat kesepian dan gelisah
                         </label><br> <br>
-                        <input type="radio" name="q12" value="1"> Saya merasa sangat nyaman dan senang |
-                        <input type="radio" name="q12" value="2"> |
-                        <input type="radio" name="q12" value="3">  Netral |
-                        <input type="radio" name="q12" value="4"> |
-                        <input type="radio" name="q12" value="5"> Saya merasa sangat kesepian dan gelisah<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q12" value="1">
+                                <label>Saya merasa sangat nyaman dan senang</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q12" value="2">
+                                <label>Jarang merasa nyaman</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q12" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q12" value="4">
+                                <label>Sering merasa tidak nyaman</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q12" value="5">
+                                <label>Saya merasa sangat kesepian dan gelisah</label>
+                            </div>
+                        </article>                        
                     </div>
                     <!-- pertanyaan ke duabelas -->
                 </div>
@@ -683,11 +900,28 @@
                             1: Jarang, saya lebih suka melakukan hal-hal sendiri <br>
                             5: Sering, saya merasa perlu berinteraksi agar tidak merasa bosan
                         </label><br> <br>
-                        <input type="radio" name="q13" value="1"> Jarang, saya lebih suka melakukan hal-hal sendiri |
-                        <input type="radio" name="q13" value="2"> |
-                        <input type="radio" name="q13" value="3">  Netral |
-                        <input type="radio" name="q13" value="4"> |
-                        <input type="radio" name="q13" value="5"> Sering, saya merasa perlu berinteraksi agar tidak merasa bosan<br><br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q13" value="1">
+                                <label>Jarang, saya lebih suka melakukan hal-hal sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q13" value="2">
+                                <label>Jarang merasa perlu berinteraksi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q13" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q13" value="4">
+                                <label>Sering merasa perlu berinteraksi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q13" value="5">
+                                <label>Sering, saya merasa perlu berinteraksi agar tidak merasa bosan</label>
+                            </div>
+                        </article>                        
                     </div>
                     <!-- pertanyaan ke tigabelas -->
                 </div>

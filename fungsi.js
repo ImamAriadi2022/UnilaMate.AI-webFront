@@ -98,6 +98,13 @@ function submitTugas() {
     }
 }
 
+// ini buat edit tugas
+
+
+
+
+
+
 
 // Fungsi untuk menambah kegiatan baru
 function openKegiatanPopup() {
@@ -245,6 +252,80 @@ document.getElementById("hapus-btn").addEventListener("click", function() {
     document.getElementById('task-details').classList.add('hidden');
 });
 
+// ini buat edit tugas
+// Fungsi untuk menampilkan popup edit
+function showEditPopup(index) {
+    const tugas = tugasDB[index];
+    document.getElementById('editTugasInput').value = tugas.nama;
+    document.getElementById('editTugasDeadline').value = tugas.deadline;
+    document.getElementById('editTugasIndex').value = index; // Menyimpan indeks tugas yang diedit
+    document.getElementById('editPopup').style.display = 'block'; // Menampilkan popup edit
+}
+
+// Fungsi untuk menyimpan perubahan deadline tugas
+function editDeadlineTugas() {
+    const index = document.getElementById('editTugasIndex').value;
+    const newDeadline = document.getElementById('editTugasDeadline').value;
+
+    if (newDeadline) {
+        // Update deadline di array tugasDB
+        tugasDB[index].deadline = newDeadline;
+        renderTugasList(); // Render ulang daftar tugas
+        alert("Deadline berhasil diedit!");
+        closeEditPopup(); // Tutup popup edit
+    } else {
+        alert("Mohon isi deadline yang baru!");
+    }
+}
+
+// Fungsi untuk menutup popup edit
+function closeEditPopup() {
+    document.getElementById('editPopup').style.display = 'none';
+}
+
+// Contoh render daftar tugas (pastikan ada tombol edit untuk setiap tugas)
+function renderTugasList() {
+    const tugasList = document.getElementById('tugasList');
+    tugasList.innerHTML = ''; // Kosongkan daftar sebelumnya
+
+    tugasDB.forEach((tugas, index) => {
+        let li = document.createElement('li');
+        li.textContent = `${tugas.nama} - Deadline: ${tugas.deadline}`;
+        li.classList.add('task-item');
+
+        // Tambahkan tombol edit
+        let editButton = document.createElement('button');
+        editButton.textContent = 'Edit Deadline';
+        editButton.classList.add('new-list-btn'); // Tambahkan kelas baru
+        editButton.onclick = function(event) {
+            event.stopPropagation(); // Menghindari event click pada li
+            showEditPopup(index); // Tampilkan popup edit untuk tugas ini
+        };
+        
+        // Tambahkan tombol edit ke li
+        li.appendChild(editButton);
+
+        let activeTask = null;
+        li.onclick = function() {
+            if (activeTask === tugas) {
+                // Jika tugas yang sama di klik lagi, tutup detail tugas
+                document.getElementById('task-details').classList.add('hidden');
+                activeTask = null; // Reset activeTask
+            } else {
+                // Tampilkan detail tugas
+                showTaskDetails(tugas);
+                activeTask = tugas; // Set activeTask ke tugas yang baru
+            }
+        };
+        
+        tugasList.appendChild(li);
+    });
+}
+
+
+
+// ini buat edit tugas
+// ini buat edit tugas
 
 
 
