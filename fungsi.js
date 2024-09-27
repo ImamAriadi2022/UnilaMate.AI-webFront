@@ -4,13 +4,19 @@ let tugasDB = [
     { nama: "Tugas 3", deadline: "2024-09-22" }
 ];
 
-let kegiatanDB = [
-    { nama: "Kegiatan 1", tanggal: "2024-09-19" },
-    { nama: "Kegiatan 2", tanggal: "2024-09-21" }
-];
+// let kegiatanDB = [
+//     { nama: "Kegiatan 1", tanggal: "2024-09-19" },
+//     { nama: "Kegiatan 2", tanggal: "2024-09-21" }
+// ];
 
 let currentTask; // current
+// let currentKegiatan;
 
+
+
+window.onload = function() {
+    renderPenting(); // Jika bagian penting perlu di-render di awal
+};
 // Fungsi untuk menampilkan daftar tugas
 function renderTugasList() {
     const tugasList = document.getElementById('tugasList');
@@ -38,17 +44,31 @@ function renderTugasList() {
 }
 
 // Fungsi untuk menampilkan daftar kegiatan
-function renderKegiatanList() {
-    const kegiatanList = document.getElementById('kegiatanList');
-    kegiatanList.innerHTML = ''; // Kosongkan daftar sebelumnya
+// ALLERT ELLERT
+// function renderKegiatanList(){
+//     const kegiatanList = document.getElementById('kegiatanList');
+//     kegiatanList.innerHTML = ''; // Kosongkan daftar sebelumnya
 
-    kegiatanDB.forEach(kegiatan => {
-        let li = document.createElement('li');
-        li.textContent = `${kegiatan.nama} - Tanggal: ${kegiatan.tanggal}`;
-        li.classList.add('task-item');
-        kegiatanList.appendChild(li);
-    });
-}
+//     kegiatanDB.forEach(kegiatan => {
+//         let li = document.createElement('li');
+//         li.textContent = `${kegiatan.nama} - tanggal: ${kegiatan.tanggal}`;
+//         li.classList.add('task-item');
+//         let activeKegiatan  = null;
+//         li.onclick = function() {
+//             if (activeKegiatan === kegiatan) {
+//                 // Jika kegiatan yang sama di klik lagi, tutup detail kegiatan
+//                 document.getElementById('kegiatan-details').classList.add('hidden');
+//                 activeKegiatan = null; // Reset activeKegiatan
+//         } else {
+//             // Tampilkan detail kegiatan
+//             console.log('togle tugas telah berfungsi');
+//             showKegiatanDetails(kegiatan);
+//             activeKegiatan = kegiatan; // Set activeKegiatan ke kegiatan
+//         }
+//     };
+//         kegiatanList.appendChild(li);
+//     });
+// }
 
 // Fungsi untuk menampilkan detail tugas di sidebar kanan
 function showTaskDetails(tugas) {
@@ -62,14 +82,15 @@ function showTaskDetails(tugas) {
 }
 
 // Fungsi untuk menampilkan detail kegiatan di sidebar kanan
-function showKegiatanDetails(kegiatan) {
-    const detailsSection = document.getElementById('kegiatan-details');
-    document.getElementById('kegiatan-title').textContent = kegiatan.nama;
-    document.getElementById('kegiatan-tanggal').textContent = `Tanggal: ${kegiatan.tanggal}`;
-    document.getElementById('kegiatan-description').textContent = kegiatan.deskripsi;
-    detailsSection.classList.remove('hidden'); // Tampilkan sidebar detail
-    detailsSection.style.display = 'block'; // Pastikan sidebar muncul
-}
+// function showKegiatanDetails(kegiatan) {
+//     const detailsSection = document.getElementById('kegiatan-details');
+//     document.getElementById('kegiatan-title').textContent = kegiatan.nama;
+//     document.getElementById('kegiatan-tanggal').textContent = `Tanggal: ${kegiatan.tanggal}`;
+//     document.getElementById('kegiatan-description').textContent = kegiatan.deskripsi;
+//     // Pastikan sidebar muncul
+//     detailsSection.classList.remove('hidden'); // Tampilkan sidebar detail
+
+// }
 
 
 // Fungsi untuk menambah tugas baru
@@ -107,29 +128,29 @@ function submitTugas() {
 
 
 // Fungsi untuk menambah kegiatan baru
-function openKegiatanPopup() {
-    document.getElementById('kegiatanPopup').style.display = 'block';
-}
+// function openKegiatanPopup() {
+//     document.getElementById('kegiatanPopup').style.display = 'block';
+// }
 
-function closeKegiatanPopup() {
-    document.getElementById('kegiatanPopup').style.display = 'none';
-}
+// function closeKegiatanPopup() {
+//     document.getElementById('kegiatanPopup').style.display = 'none';
+// }
 
-function submitKegiatan() {
-    const namaKegiatan = document.getElementById('kegiatanInput').value;
-    const tanggalKegiatan = document.getElementById('kegiatanTanggal').value;
+// function submitKegiatan() {
+//     const namaKegiatan = document.getElementById('kegiatanInput').value;
+//     const tanggalKegiatan = document.getElementById('kegiatanTanggal').value;
 
-    if (namaKegiatan && tanggalKegiatan) {
-        kegiatanDB.push({ nama: namaKegiatan, tanggal: tanggalKegiatan });
-        renderKegiatanList();
-        document.getElementById('kegiatanInput').value = ''; // Kosongkan input setelah kegiatan ditambahkan
-        document.getElementById('kegiatanTanggal').value = '';
-        alert("Kegiatan berhasil ditambahkan!");
-        closeKegiatanPopup(); // Tutup pop-up setelah kegiatan ditambahkan
-    } else {
-        alert("Mohon isi nama kegiatan dan tanggal!");
-    }
-}
+//     if (namaKegiatan && tanggalKegiatan) {
+//         kegiatanDB.push({ nama: namaKegiatan, tanggal: tanggalKegiatan });
+//         renderKegiatanList();
+//         document.getElementById('kegiatanInput').value = ''; // Kosongkan input setelah kegiatan ditambahkan
+//         document.getElementById('kegiatanTanggal').value = '';
+//         alert("Kegiatan berhasil ditambahkan!");
+//         closeKegiatanPopup(); // Tutup pop-up setelah kegiatan ditambahkan
+//     } else {
+//         alert("Mohon isi nama kegiatan dan tanggal!");
+//     }
+// }
 
 
 // Fungsi untuk menampilkan menu yang dipilih dan menyembunyikan menu lainnya
@@ -157,10 +178,10 @@ function showMenu(menuId) {
 // Fungsi untuk menampilkan tugas dan kegiatan terdekat di bagian penting
 function renderPenting() {
     const tugasPenting = document.getElementById('tugasPenting');
-    const kegiatanPenting = document.getElementById('kegiatanPenting');
+    // const kegiatanPenting = document.getElementById('kegiatanPenting');
 
     tugasPenting.innerHTML = ''; // Kosongkan daftar sebelumnya
-    kegiatanPenting.innerHTML = ''; // Kosongkan daftar sebelumnya
+    // kegiatanPenting.innerHTML = ''; // Kosongkan daftar sebelumnya
 
     // Urutkan tugas berdasarkan deadline dan ambil 2 terdekat
     const tugasTerdekat = tugasDB
@@ -168,9 +189,9 @@ function renderPenting() {
         .slice(0, 2);
 
     // Urutkan kegiatan berdasarkan tanggal dan ambil 2 terdekat
-    const kegiatanTerdekat = kegiatanDB
-        .sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal))
-        .slice(0, 2);
+    // const kegiatanTerdekat = kegiatanDB
+    //     .sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal))
+    //     .slice(0, 2);
 
     // Menampilkan 2 tugas terdekat
     tugasTerdekat.forEach(tugas => {
@@ -181,50 +202,58 @@ function renderPenting() {
     });
 
     // Menampilkan 2 kegiatan terdekat
-    kegiatanTerdekat.forEach(kegiatan => {
-        let li = document.createElement('li');
-        li.textContent = `${kegiatan.nama} - Tanggal: ${kegiatan.tanggal}`;
-        li.classList.add('task-item');
-        kegiatanPenting.appendChild(li);
-    });
+    // kegiatanTerdekat.forEach(kegiatan => {
+    //     let li = document.createElement('li');
+    //     li.textContent = `${kegiatan.nama} - Tanggal: ${kegiatan.tanggal}`;
+    //     li.classList.add('task-item');
+    //     kegiatanPenting.appendChild(li);
+    // });
 }
 
 
 // Event Listener untuk navigasi
 document.getElementById('link-penting').addEventListener('click', function() { showMenu('penting-section'); });
 document.getElementById('link-tugas').addEventListener('click', function() { showMenu('tugas'); });
-document.getElementById('link-kegiatan').addEventListener('click', function() { showMenu('kegiatan'); });
+// document.getElementById('link-kegiatan').addEventListener('click', function() { showMenu('kegiatan'); });
 document.getElementById('link-mengenali-diri').addEventListener('click', function() { showMenu('psychology-test'); });
 
 
 //untuk hide tombol
 document.getElementById('link-penting').addEventListener('click', function() {
     const tombolTugas = document.getElementById('tombolAddTugas')
-    const tombolKegiatan = document.getElementById('tombolAddKegiatan')
+    // const tombolKegiatan = document.getElementById('tombolAddKegiatan')
+    // const tombolremoveKegiatan = document.getElementById('remove-kegiatan')
     tombolTugas.style.display = 'none';
-    tombolKegiatan.style.display = 'none';
+    // tombolKegiatan.style.display = 'none';
+    // tombolremoveKegiatan.style.display = 'none';
 })
 
 document.getElementById('link-tugas').addEventListener('click', function() {
     const tombolTugas = document.getElementById('tombolAddTugas')
-    const tombolKegiatan = document.getElementById('tombolAddKegiatan')
+    // const tombolKegiatan = document.getElementById('tombolAddKegiatan');
+    // const tombolremoveKegiatan = document.getElementById('remove-kegiatan');
     tombolTugas.style.display = 'block';
-    tombolKegiatan.style.display = 'none';
+    // tombolKegiatan.style.display = 'none';
+    // tombolremoveKegiatan.style.display = 'none';
 })
 
-document.getElementById('link-kegiatan').addEventListener('click', function() {
-    const tombolTugas = document.getElementById('tombolAddTugas')
-    const tombolKegiatan = document.getElementById('tombolAddKegiatan')
-    tombolTugas.style.display = 'none';
-    tombolKegiatan.style.display = 'block';
-})
+// document.getElementById('link-kegiatan').addEventListener('click', function() {
+//     const tombolTugas = document.getElementById('tombolAddTugas')
+    // const tombolKegiatan = document.getElementById('tombolAddKegiatan')
+    // const tombolremoveKegiatan = document.getElementById('remove-kegiatan')
+    // tombolTugas.style.display = 'none';
+    // tombolKegiatan.style.display = 'block';
+    // tombolremoveKegiatan.style.display = 'block';
+// })
 
-document.getElementById('link-mengenali-diri').addEventListener('click', function() {
-    const tombolTugas = document.getElementById('tombolAddTugas')
-    const tombolKegiatan = document.getElementById('tombolAddKegiatan')
-    tombolTugas.style.display = 'none';
-    tombolKegiatan.style.display = 'none';
-})
+// document.getElementById('link-mengenali-diri').addEventListener('click', function() {
+//     const tombolTugas = document.getElementById('tombolAddTugas')
+//     const tombolKegiatan = document.getElementById('tombolAddKegiatan')
+//     const tombolremoveKegiatan = document.getElementById('remove-kegiatan')
+//     tombolTugas.style.display = 'none';
+//     tombolKegiatan.style.display = 'none';
+//     // tombolremoveKegiatan.style.display = 'none';
+// })
 
 // Tombol untuk menutup detail tugas
 document.getElementById('close-details-btn').addEventListener('click', function() {
@@ -240,9 +269,15 @@ function hapusTugas(namaTugas) {
     tugasDB = tugasDB.filter(tugas => tugas.nama !== namaTugas);
     renderTugasList(); // Tampilkan ulang daftar tugas setelah penghapusan
 }
+// // Fungsi untuk menghapus kegiatan berdasarkan nama
+// function hapusKegiatan(namaKegiatan) {
+//     kegiatanDB = kegiatanDB.filter(kegiatan => kegiatan.nama !== namaKegiatan);
+//     renderkegiatanList(); // Tampilkan ulang daftar tugas setelah penghapusan
+// }
 
 // Tampilkan tugas awal saat halaman dimuat
 renderTugasList()
+// renderkegiatanList()
 
 // Event listener untuk tombol hapus
 document.getElementById("hapus-btn").addEventListener("click", function() {
@@ -251,6 +286,13 @@ document.getElementById("hapus-btn").addEventListener("click", function() {
     hapusTugas(taskTitle);
     document.getElementById('task-details').classList.add('hidden');
 });
+// // Event listener untuk tombol hapus kegiatan
+// function removeKegiatanPopup() {
+//     const kegiatanTitle = document.getElementById('kegiatan-title').textContent; // Mengambil judul kegiatan
+//     console.log(kegiatanTitle); // Menampilkan judul kegiatan di konsol
+//     hapusKegiatan(kegiatanTitle); // Memanggil fungsi hapusKegiatan dengan judul kegiatan
+//     document.getElementById('kegiatan-details').classList.add('hidden'); // Menyembunyikan detail kegiatan
+// }
 
 // ini buat edit tugas
 // Fungsi untuk menampilkan popup edit
@@ -327,6 +369,48 @@ function renderTugasList() {
 // ini buat edit tugas
 // ini buat edit tugas
 
+
+
+// ini buat edit kegiatan
+// ini buat edit kegiatan
+// function renderKegiatanList() {
+//     const kegiatanList = document.getElementById('kegiatanList');
+//     kegiatanList.innerHTML = ''; // Kosongkan daftar sebelumnya
+
+//     kegiatanDB.forEach(kegiatan => {
+//         let li = document.createElement('li');
+//         li.textContent = `${kegiatan.nama} - Tanggal: ${kegiatan.tanggal}`;
+//         li.classList.add('task-item');
+//         kegiatanList.appendChild(li);
+//     });
+
+//     // tombol edit
+//     let editKegiatan =  document.createElement('button');
+//     editKegiatan.textContent = 'Edit Jadwal';
+//     editKegiatan.classList.add('new-list-btn');
+//     editKegiatan.onclick = function(event){
+//         event.stopPropagation();
+//         showEditKegiatanPopUp(index);
+//     };
+
+//     // menambahkan menu edit di list kegiatan
+//     li.appendChild(editKegiatan);
+
+//     let activeKegiatan = null;
+//     li.onclick = function(){
+//         if (activeKegiatan === kegiatan) {
+//             // Jika kegiatan yang sama di klik lagi, tutup detail kegiatan
+//             document.getElementById('kegiatan-details').classList.add('hidden');
+//             activeKegiatan = null; // Reset activeKegiatan
+//     } else {
+//         // Tampilkan detail kegiatan
+//         showKegiatanDetails(kegiatan);
+//         activeKegiatan = kegiatan;
+//     }
+// }
+// }
+// ini buat edit kegiatan
+// ini buat edit kegiatan
 
 
 // detail profil
@@ -452,6 +536,4 @@ function showDetailProfil() {
 
 
 
-window.onload = function() {
-    renderPenting(); // Jika bagian penting perlu di-render di awal
-};
+

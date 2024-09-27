@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Task</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1f1f1f;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background-color: #333;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #ffcc00;
+    }
+
+    .container {
+      margin: 50px auto;
+      width: 60%;
+      background-color: #2a2a2a;
+      border-radius: 10px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .output {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #444;
+      border-radius: 8px;
+      min-height: 100px;
+    }
+
+    .back-button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #ff5e5e;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #ff3e3e;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 id="task-title">Gemini</h1>
+</header>
+
+<div class="container">
+  <h2>Rekomendasi mengerjakan tugas</h2>
+  <div class="output" id="output-container">
+    <!-- Output dari API akan muncul di sini -->
+  </div>
+
+  <button class="back-button" onclick="goBack()">Back</button>
+</div>
+
+<script>
+  // Mengganti judul berdasarkan tasktitle (bisa diupdate sesuai nilai API)
+  document.getElementById('task-title').textContent = 'Dynamic Task Title';
+
+  // Fungsi untuk menghapus konten output dan kembali
+  function goBack() {
+    document.getElementById('output-container').textContent = ''; // Hapus hasil generate
+    alert('Progress telah dihapus, kembali ke halaman sebelumnya');
+    // Bisa menambahkan logika untuk kembali ke halaman sebelumnya
+    window.history.back(); // Kembali ke halaman sebelumnya
+    window.location.href = '../main.html';
+  }
+</script>
+
+</body>
+</html>
