@@ -415,7 +415,7 @@
     <div class="container">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <section class="profile">
+            <section onclick="showDetailProfil()" class="profile">
                 <div class="avatar"></div>
                 <p class="name">Imam Ariadi</p>
                 <p class="email">imamariadi775@gmail.com</p>
@@ -430,6 +430,11 @@
             </nav>
         </aside>
 
+        <!-- detail profil -->
+        <div id="app"></div>
+        <!-- detail profil -->
+
+
         <!-- Main Content -->
         <main class="main-content" id="main-content">
             <div id="tugas" class="menu-item">
@@ -443,8 +448,8 @@
                 <input type="text" id="tugasInput"><br><br>
                 <label for="tugasDeadline">Deadline Tugas:</label>
                 <input type="date" id="tugasDeadline"><br><br>
-                <button onclick="submitTugas()">Tambah Tugas</button>
-                <button onclick="closePopup()">Tutup</button>
+                <button class="new-list-btn" onclick="submitTugas()">Tambah Tugas</button>
+                <button class="new-list-btn" onclick="closePopup()">Tutup</button>
             </div>
             
             <div id="kegiatan" class="menu-item">

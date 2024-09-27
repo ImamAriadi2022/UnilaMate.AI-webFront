@@ -248,6 +248,127 @@ document.getElementById("hapus-btn").addEventListener("click", function() {
 
 
 
+// detail profil
+// detail profil
+function showDetailProfil() {
+    // Clear previous content (optional)
+    document.getElementById('app').innerHTML = '';
+
+    // Create the outer card div
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.id = 'profile-card'; // Added an ID for reference
+
+    // Create the close button
+    const closeButton = document.createElement('button');
+    closeButton.className = 'close-btn';
+    closeButton.innerHTML = '&times;'; // × symbol for close
+    closeButton.onclick = function() {
+      // Remove the card when close button is clicked
+      document.getElementById('profile-card').remove();
+    };
+
+    // Create the profile section
+    const profile = document.createElement('div');
+    profile.className = 'profile';
+
+    const profileImg = document.createElement('img');
+    profileImg.src = 'https://via.placeholder.com/50';
+    profileImg.alt = 'Profile Picture';
+
+    const profileInfo = document.createElement('div');
+    profileInfo.className = 'profile-info';
+
+    const profileName = document.createElement('h3');
+    profileName.textContent = 'Clark Jeffery';
+
+    const profileEmail = document.createElement('p');
+    profileEmail.textContent = 'clark@email.com';
+
+    // Append name and email to profile info
+    profileInfo.appendChild(profileName);
+    profileInfo.appendChild(profileEmail);
+
+    // Append image and profile info to profile section
+    profile.appendChild(profileImg);
+    profile.appendChild(profileInfo);
+
+    // Create the balance section
+    const balance = document.createElement('div');
+    balance.className = 'balance';
+
+    const balanceIcon = document.createElement('div');
+    balanceIcon.className = 'balance-icon';
+    balanceIcon.innerHTML = '&#36;';
+
+    const balanceInfo = document.createElement('div');
+    balanceInfo.className = 'balance-info';
+
+    const balanceText = document.createElement('p');
+    balanceText.textContent = 'Current Balance';
+
+    const balanceAmount = document.createElement('h2');
+    balanceAmount.textContent = '$1476';
+
+    // ini buat logout
+    // ini buat logout
+    const logout = document.createElement('button')
+    logout.textContent = 'Logout';
+    logout.className = 'new-list-btn';
+
+    logout.onclick = function() {
+        // Remove the card when logging out
+        document.getElementById('profile-card').remove();
+  
+        // Clear localStorage (or sessionStorage)
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('username');
+        localStorage.removeItem('email');
+        alert('You have been logged out.');
+        window.location.href = 'index.html'; 
+      };
+
+    // ini buat logout
+    // ini buat logout
+
+    // Append text and amount to balance info
+    balanceInfo.appendChild(balanceText);
+    balanceInfo.appendChild(balanceAmount);
+
+    // Append icon and info to balance section
+    balance.appendChild(balanceIcon);
+    balance.appendChild(balanceInfo);
+
+    // Create the orders section
+    const orders = document.createElement('div');
+    orders.className = 'orders';
+
+    const recentOrdersTitle = document.createElement('h4');
+    recentOrdersTitle.textContent = 'Recent orders';
+
+    const wishlist = document.createElement('p');
+    wishlist.textContent = 'Wishlist';
+
+    const fashionStudio = document.createElement('p');
+    fashionStudio.textContent = 'Fashion studio';
+
+    // Append orders to orders section
+    orders.appendChild(logout);
+
+    // Append profile, balance, and orders to card
+    card.appendChild(closeButton); // Append the close button
+    card.appendChild(profile);
+    card.appendChild(orders);
+
+    // Finally, append the card to the #app div
+    document.getElementById('app').appendChild(card);
+  }
+// detail profil
+// detail profil
+
+
+
+
 
 
 window.onload = function() {
