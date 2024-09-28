@@ -246,14 +246,14 @@ document.getElementById('link-tugas').addEventListener('click', function() {
     // tombolremoveKegiatan.style.display = 'block';
 // })
 
-// document.getElementById('link-mengenali-diri').addEventListener('click', function() {
-//     const tombolTugas = document.getElementById('tombolAddTugas')
-//     const tombolKegiatan = document.getElementById('tombolAddKegiatan')
-//     const tombolremoveKegiatan = document.getElementById('remove-kegiatan')
-//     tombolTugas.style.display = 'none';
-//     tombolKegiatan.style.display = 'none';
-//     // tombolremoveKegiatan.style.display = 'none';
-// })
+document.getElementById('link-mengenali-diri').addEventListener('click', function() {
+    const tombolTugas = document.getElementById('tombolAddTugas')
+    // const tombolKegiatan = document.getElementById('tombolAddKegiatan')
+    // const tombolremoveKegiatan = document.getElementById('remove-kegiatan')
+    tombolTugas.style.display = 'none';
+    // tombolKegiatan.style.display = 'none';
+    // tombolremoveKegiatan.style.display = 'none';
+})
 
 // Tombol untuk menutup detail tugas
 document.getElementById('close-details-btn').addEventListener('click', function() {

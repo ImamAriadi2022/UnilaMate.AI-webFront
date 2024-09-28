@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const welcomeText = document.getElementById('welcomeText');
   
     // Typing effect untuk welcome message
-    const message = "Selamat Datang di GitHub!";
+    const message = "Selamat Datang di unilaMate.ai";
     let index = 0;
   
     function typeEffect() {
