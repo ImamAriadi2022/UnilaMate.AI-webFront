@@ -411,6 +411,47 @@
         .form-bagian{
             padding: 10px;
         }
+
+
+        .temaContent1 {
+            background-image: url(img/tema1.png);
+            background-size: cover;
+        }
+        .temaContent2 {
+            background-image: url(img/tema2.png);
+            background-size: cover;
+        }
+        .temaContent3 {
+            background-image: url(img/tema3.png);
+            background-size: cover;
+        }
+
+        .tema{
+            position: absolute;
+            z-index: 4000;
+            top: 26px;
+            left: 870px;
+        }
+        .tema button{
+            background-color: #333;
+            border-radius:8px;
+            cursor: pointer;
+            color: #fff;
+            height:25px;
+            width: 40px;
+            padding: 1px;
+            border: none;
+        }
+        .tema button:hover{
+            background-color: #926600;
+            border-radius:8px;
+            cursor: pointer;
+            color: #fff;
+            height:25px;
+            width: 40px;
+            padding: 1px;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -438,10 +479,23 @@
         
 
         <!-- Main Content -->
-        <main class="main-content" id="main-content">
-            <div id="tugas" class="menu-item">
-                <h2>List Tugas</h2>
-                <ul class="task-list" id="tugasList"></ul>
+        <main class="main-content " id="main-content">
+            <div class="tema">
+                <button onclick="toggleperubahanTema()">tema</button>
+            </div>
+            <div class="main">
+                <div id="tugas" class="menu-item">
+                    <h2>List Tugas</h2>
+                    <ul class="task-list" id="tugasList"></ul>
+                </div>
+            </div>
+
+            <div id="tema-popUp-baru" class="tema-popUp" style="display:none;">
+                <h3>Pilih Tema</h3>
+                <button class="new-list-btn" onclick="tema1()">Tema 1</button>
+                <button class="new-list-btn" onclick="tema2()">Tema 2</button>
+                <button class="new-list-btn" onclick="tema3()">Tema 3</button>
+                <button class="new-list-btn" onclick="temaDefault()">default</button>
             </div>
 
             <div id="DOM-psikologi" class="DOM-psikologi"></div>
@@ -497,7 +551,7 @@
             </section>
             <section id="psychology-test" class="form-section">
                 <h3>Formulir Tes Psikologi</h3>
-                <form name="quizForm" id="quizForm" style="background-image:url(img/bgPremium.jpg);">
+                <form name="quizForm" id="quizForm">
                     <div class="styleformulir">
                         <!-- pertanyaan pertama -->
                         <div class="form-bagian">
@@ -971,6 +1025,21 @@
                 </div>
               </div>
 
+              <!-- timeline pengerjaan -->
+                <div class="timeline-details">
+                    <button class="task-action-btn" onclick="toggleTimeline()">Timeline</button>
+                    <div id="timeline-dropdown" style="display: none;">
+                        <div  style="position: absolute; background:#333333; padding-right:1rem; border-color: #fff;">                        
+                            <span class="melayang">
+                                <button onclick="setTimeline('1 Hari')">1 Hari</button>
+                                <button onclick="setTimeline('3 Hari')">3 Hari</button>
+                                <button onclick="setTimeline('1 Minggu')">1 Minggu</button>
+                                <button onclick="setTimeline('2 Minggu')">2 Minggu</button>
+                                <button onclick="setTimeline('1 Bulan')">1 Bulan</button>
+                            </span>
+                        </div>
+                    </div>
+
             <!-- ini untuk menambahkan deskripsi -->
             <button onclick="catatan()" class="task-action-btn add-note-btn">Tambahkan catatan</button>
 
@@ -1116,6 +1185,8 @@
     <script src="js/noted.js"></script>
     <script src="js/rekomendasi.js"></script>
     <script src="js/psikologi.js"></script>
+    <script src="js/timeline.js"></script>
+    <script src="js/temaChange.js"></script>
 
 </body>
 </html>

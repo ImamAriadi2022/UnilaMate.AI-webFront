@@ -520,3 +520,19 @@ html, body {
 
 
 
+
+
+
+/* ini buat tema edit */
+.tema-popUp{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999; /* Memastikan pop-up muncul di atas elemen lain */
+    background-color: #333;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* ini buat tema edit */
