@@ -409,6 +409,20 @@
         .form-bagian{
             padding: 10px;
         }
+
+
+        .upgrade{
+            position:absolute;
+            z-index: 342300;
+            top: 1.7rem;
+            right: 30rem;
+            color: #ca9a1f;
+            background-color: #333;
+            border:none;
+            height: 1.5rem;
+            width: 4rem;
+            border-radius: 6px;
+        }
     </style>
 </head>
 <body>
@@ -437,9 +451,16 @@
 
         <!-- Main Content -->
         <main class="main-content" id="main-content">
+            <button onclick="premium()" class="upgrade">Upgrade</button>
             <div id="tugas" class="menu-item">
                 <h2>List Tugas</h2>
                 <ul class="task-list" id="tugasList"></ul>
+            </div>
+
+            <div id="premi" class="premPop" style="display:none;">
+                <h3>Pilih Tema</h3>
+                <button class="new-list-btn" onclick="paket1()">paket bulanan</button>
+                <button class="new-list-btn" onclick="paket2()">Paket tahunan</button>
             </div>
 
             <div id="DOM-psikologi" class="DOM-psikologi"></div>
@@ -1114,6 +1135,6 @@
     <script src="js/noted.js"></script>
     <script src="js/rekomendasi.js"></script>
     <script src="js/psikologi.js"></script>
-
+    <script src="js/premium.js"></script>
 </body>
 </html>
