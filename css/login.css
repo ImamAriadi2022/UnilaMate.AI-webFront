@@ -6,12 +6,12 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #0d1117;
     color: #c9d1d9;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-image: url(../img/BGintro.jpg);
 }
 
 .login-container {
@@ -49,17 +49,17 @@ input {
 button {
     width: 100%;
     padding: 0.8rem;
-    background-color: #238636;
+    background-color: #03fbff;
     border: none;
     border-radius: 6px;
-    color: white;
+    color: #333;
     font-size: 1rem;
     cursor: pointer;
     margin-top: 1rem;
 }
 
 button:hover {
-    background-color: #2ea043;
+    background-color: #03fbff;
 }
 
 .error-message {
@@ -68,3 +68,5 @@ button:hover {
     display: none;
     margin-top: 0.5rem;
 }
+
+

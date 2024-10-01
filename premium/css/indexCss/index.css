@@ -48,7 +48,7 @@ h1 {
 button {
     padding: 1rem 2rem;
     font-size: 1.2rem;
-    background-color: #238636;
+    background-color: #03fbff;
     border: none;
     border-radius: 6px;
     color: white;
@@ -56,7 +56,7 @@ button {
 }
 
 button:hover {
-    background-color: #2ea043;
+    background-color: #03fbff;
 }
 
 @keyframes fadeInLogo {

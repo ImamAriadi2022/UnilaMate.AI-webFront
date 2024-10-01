@@ -10,8 +10,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #0d1117;
     color: white;
+    background-image: url(../../img/BGintro.jpg);
 }
 
 .intro-container {
@@ -28,7 +28,7 @@ body {
 
 .logo {
     font-size: 3rem;
-    color: #ff5733;
+    color: #03fbff;
     opacity: 0;
     animation: fadeInLogo 3s forwards;
 }
@@ -48,15 +48,15 @@ h1 {
 button {
     padding: 1rem 2rem;
     font-size: 1.2rem;
-    background-color: #238636;
+    background-color: #03fbff;
     border: none;
     border-radius: 6px;
-    color: white;
+    color: #333;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #2ea043;
+    background-color: #03fbff;
 }
 
 @keyframes fadeInLogo {
@@ -78,3 +78,4 @@ button:hover {
         opacity: 1;
     }
 }
+

@@ -4,7 +4,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background-color: #0d1117;
+    background-image: url(../img/BGintro.jpg);
     color: #c9d1d9;
     display: flex;
     justify-content: center;
@@ -53,8 +53,8 @@ body {
   }
   
   #signupBtn {
-    background-color: #6e40c9;
-    color: #fff;
+    background-color: #03fbff;
+    color: #333;
   }
   
   #enterpriseTrialBtn {
@@ -62,4 +62,5 @@ body {
     color: #c9d1d9;
     border: 1px solid #c9d1d9;
   }
+  
   
