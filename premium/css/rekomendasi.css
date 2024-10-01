@@ -1,0 +1,42 @@
+
+
+
+.rekomendasi{
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    height: 80vh;
+    width: 120vh;
+    z-index: 10000;
+    top: 50%;
+    left: 0%; 
+    transform: translate(-104%, -50%);
+    border-radius: 10px;
+    box-shadow: #fff;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.deskripsi{
+    justify-content: start;
+    padding: 1rem;
+    max-height: 24rem; /* Tentukan tinggi maksimal sesuai kebutuhan */
+    overflow-y: auto; /* Menambahkan scroll ketika konten melebihi batas */
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+
+}
+
+
+.btnBack{
+    z-index: 10010;
+    position: absolute;
+    transform: translate(530%, -100%);
+    top: 95%;
+    left: 0;
+    display: flex;
+}

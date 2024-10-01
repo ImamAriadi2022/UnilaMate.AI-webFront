@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css untuk menu ingatkan saya -->
+     <!-- css untuk div note -->
+      <link rel="stylesheet" href="css/default.css">
+
+      <!-- test-psikologi -->
+    <link rel="stylesheet" href="css/test-psikologi.css">
+
+      <!-- ini untuk css rekomendasi mengerjakan tugas -->
+    <link rel="stylesheet" href="css/rekomendasi.css">
+
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <title>UnilaMate.Ai</title>
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <section onclick="showDetailProfil()" class="profile">
+                <div class="avatar"></div>
+                <p class="name">Imam Ariadi</p>
+                <p class="email">imamariadi775@gmail.com</p>
+            </section>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#" id="link-penting">Penting</a></li>
+                    <!-- <li><a href="#" id="link-kegiatan">Kegiatan</a></li> -->
+                    <li><a href="#" id="link-tugas">Daftar Tugas</a></li>
+                    <li><a href="#" id="link-mengenali-diri">Mengenali Diri</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- detail profil -->
+        <div id="app"></div>
+        <!-- detail profil -->
+        
+
+        <!-- Main Content -->
+        <main class="main-content" id="main-content">
+            <div id="tugas" class="menu-item">
+                <h2>List Tugas</h2>
+                <ul class="task-list" id="tugasList"></ul>
+            </div>
+
+            <div id="DOM-psikologi" class="DOM-psikologi"></div>
+
+            <div id="tugasPopup" style="display: none; position: fixed; top: 20%; left: 30%; width: 40%; padding: 20px; background-color: #333; border: 2px solid black; z-index: 1000;">
+                <h3>Tambah Tugas</h3>
+                <label for="tugasInput">Nama Tugas:</label>
+                <input type="text" id="tugasInput"><br><br>
+                <label for="tugasDeadline">Deadline Tugas:</label>
+                <input type="date" id="tugasDeadline"><br><br>
+                <button class="new-list-btn" onclick="submitTugas()">Tambah Tugas</button>
+                <button class="new-list-btn" onclick="closePopup()">Tutup</button>
+            </div>
+<!--             
+            <div id="kegiatan" class="menu-item">
+                <h2>List Kegiatan</h2>
+                <ul id="kegiatanList"></ul>
+            </div> -->
+<!-- 
+            <div id="kegiatanPopup" style="display: none; position: fixed; top: 20%; left: 30%; width: 40%; padding: 20px; background-color: #333; border: 2px solid black; z-index: 1000;">
+                <h3>Tambah Kegiatan</h3>
+                <label for="kegiatanInput">Nama Kegiatan:</label>
+                <input type="text" id="kegiatanInput"><br><br>
+                <label for="kegiatanTanggal">Tanggal Kegiatan:</label>
+                <input type="date" id="kegiatanTanggal"><br><br>
+                <button class="new-list-btn" onclick="submitKegiatan()">Tambah Kegiatan</button>
+                <button class="new-list-btn" onclick="closeKegiatanPopup()">Tutup</button>
+            </div> -->
+
+            <!-- BUAT EDIT DEADLINE TUGAS -->
+            <div id="editPopup" style="display:none;">
+                <h3>Edit Deadline Tugas</h3>
+                <input type="text" id="editTugasInput" disabled /> <!-- Nama tugas tidak dapat diubah -->
+                <input type="date" id="editTugasDeadline" />
+                <input type="hidden" id="editTugasIndex" /> <!-- Simpan indeks tugas yang sedang diedit -->
+                <button class="new-list-btn" onclick="editDeadlineTugas()">Simpan Perubahan</button>
+                <button class="new-list-btn" onclick="closeEditPopup()">Batal</button>
+            </div>
+            <!-- BUAT EDIT DEADLINE TUGAS -->
+            
+            <div id="penting-section" class="menu-item">
+                <h2>Penting</h2>
+                <h3>Tugas Terdekat:</h3>
+                <ul id="tugasPenting"></ul>
+                <!-- <h3>Kegiatan Terdekat:</h3>
+                <ul id="kegiatanPenting"></ul> -->
+            </div>
+
+            <section id="content-section">
+                <ul class="task-list" id="task-list">
+                    <!-- List tugas akan diisi dari database -->
+                </ul>
+            </section>
+            <section id="psychology-test" class="form-section">
+                <h3>Formulir Tes Psikologi</h3>
+                <form name="quizForm" id="quizForm">
+                    <div class="styleformulir">
+                        <!-- pertanyaan pertama -->
+                        <div class="form-bagian">
+                            <label for="question1">1. Bagaimana Anda merasa saat harus memimpin sebuah acara atau rapat yang besar? <br>
+                                1: Saya merasa cemas dan ingin menghindari <br>
+                                5: Saya merasa sangat nyaman dan bersemangat untuk mengambil alih
+                            </label><br> <br>
+                            <article class="quest-form-psi">
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="1">
+                                    <label>Saya merasa cemas dan ingin menghindari</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="2">
+                                    <label>Jarang merasa cemas</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="3">
+                                    <label>Netral</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="4">
+                                    <label>Sering merasa nyaman</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="q1" value="5">
+                                    <label>Saya merasa sangat nyaman dan bersemangat untuk mengambil alih</label>
+                                </div>
+                            </article>                            
+                        </div>
+                        <!-- pertanyaan pertama -->
+                    </div>
+                    
+                    <div class="styleformulir">
+                    <!-- pertanyaan kedua -->
+                    <div class="form-bagian">
+                        <label for="question2">2. Bagaimana perasaan Anda setelah menghadiri pesta atau acara sosial besar?<br>
+                            1: Saya merasa lelah dan butuh waktu sendirian untuk mengisi energi <br>
+                            5: Saya merasa energik dan siap untuk kegiatan berikutnya
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q2" value="1">
+                                <label>Saya merasa lelah dan butuh waktu sendirian untuk mengisi energi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q2" value="2">
+                                <label>Jarang merasa lelah</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q2" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q2" value="4">
+                                <label>Sering merasa energik</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q2" value="5">
+                                <label>Saya merasa energik dan siap untuk kegiatan berikutnya</label>
+                            </div>
+                        </article>                        
+                    </div>
+                    <!-- pertanyaan kedua -->
+                </div>
+                    
+
+                <div class="styleformulir">
+                    <!-- pertanyaan ketiga-->
+                    <div class="form-bagian">
+                        <label for="question3">3. Seberapa sering Anda merasa nyaman berbicara dengan orang asing?<br>
+                            1: Saya jarang merasa nyaman berbicara dengan orang asing <br>
+                            5: Saya selalu merasa nyaman berbicara dengan orang asing
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q3" value="1">
+                                <label>Saya jarang merasa nyaman berbicara dengan orang asing</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q3" value="2">
+                                <label>Jarang merasa nyaman</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q3" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q3" value="4">
+                                <label>Sering merasa nyaman</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q3" value="5">
+                                <label>Saya selalu merasa nyaman berbicara dengan orang asing</label>
+                            </div>
+                        </article>                        
+                    </div>
+                    <!-- pertanyaan ketiga -->
+                </div>
+                    
+                <div class="styleformulir">
+                    <!-- pertanyaan keempat-->
+                    <div class="form-bagian">
+                        <label for="question4">4. Bagaimana Anda biasanya menangani masalah yang rumit?<br>
+                            1: Saya lebih suka merenung dan memikirkan sendiri <br>
+                            5: Saya lebih suka mendiskusikannya dengan orang lain
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q4" value="1">
+                                <label>Saya lebih suka merenung dan memikirkan sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q4" value="2">
+                                <label>Jarang merenung sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q4" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q4" value="4">
+                                <label>Sering berdiskusi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q4" value="5">
+                                <label>Saya lebih suka mendiskusikannya dengan orang lain</label>
+                            </div>
+                        </article>                        
+                    </div>
+                    <!-- pertanyaan keempat -->
+                </div>
+                    
+                <div class="styleformulir">
+                    <!-- pertanyaan keLima-->
+                    <div class="form-bagian">
+                        <label for="question5">5. Seberapa sering Anda lebih suka diam dan berpikir saat berada di lingkungan baru?<br>
+                            1: Sangat sering, saya cenderung lebih mengamati daripada terlibat langsung <br>
+                            5: Jarang, saya lebih suka segera terlibat dan berbicara dengan orang lain
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q5" value="1">
+                                <label>Sangat sering, saya cenderung lebih mengamati daripada terlibat langsung</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q5" value="2">
+                                <label>Jarang mengamati</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q5" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q5" value="4">
+                                <label>Sering terlibat langsung</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q5" value="5">
+                                <label>Jarang, saya lebih suka segera terlibat dan berbicara dengan orang lain</label>
+                            </div>
+                        </article>
+                        
+                    </div>
+                    <!-- pertanyaan keLima -->
+                </div>
+                    
+                <div class="styleformulir">
+                    <!-- pertanyaan keenam-->
+                    <div class="form-bagian">
+                        <label for="question6">6. Bagaimana perasaan Anda ketika berada di lingkungan yang ramai dengan banyak orang?<br>
+                            1: Saya merasa cepat lelah atau cemas dalam keramaian <br>
+                            5: Saya merasa penuh energi dan senang berada di lingkungan yang ramai
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q6" value="1">
+                                <label>Saya merasa cepat lelah atau cemas dalam keramaian</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q6" value="2">
+                                <label>Jarang merasa cemas</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q6" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q6" value="4">
+                                <label>Sering merasa nyaman</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q6" value="5">
+                                <label>Saya merasa penuh energi dan senang berada di lingkungan yang ramai</label>
+                            </div>
+                        </article>                        
+                    </div>
+                    <!-- pertanyaan keenam -->
+                </div>
+                    
+                <div class="styleformulir">
+                    <!-- pertanyaan ke tujuh-->
+                    <div class="form-bagian">
+                        <label for="question7">7. Seberapa sering Anda mencari kesempatan untuk berbicara atau bersosialisasi dalam situasi baru?<br>
+                            1: Sangat jarang, saya menunggu orang lain yang memulai percakapan <br>
+                            5: Sangat sering, saya cenderung langsung memulai percakapan dengan orang lain
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q7" value="1">
+                                <label>Sangat jarang, saya menunggu orang lain yang memulai percakapan</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q7" value="2">
+                                <label>Jarang</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q7" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q7" value="4">
+                                <label>Sering</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q7" value="5">
+                                <label>Sangat sering, saya cenderung langsung memulai percakapan dengan orang lain</label>
+                            </div>
+                        </article>
+                        
+                    </div>
+                    <!-- pertanyaan ke tujuh -->
+                </div>
+                    
+                <div class="styleformulir">
+                    <!-- pertanyaan ke delapan-->
+                    <div class="form-bagian">
+                        <label for="question8">8. Bagaimana cara Anda mengisi energi setelah melewati hari yang melelahkan?<br>
+                            1: Saya lebih suka menghabiskan waktu sendiri dengan membaca atau aktivitas pribadi <br>
+                            5: Saya lebih suka berkumpul dengan teman atau keluarga untuk mengisi energi
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q8" value="1">
+                                <label>Saya lebih suka menghabiskan waktu sendiri dengan membaca atau aktivitas pribadi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q8" value="2">
+                                <label>Jarang menghabiskan waktu sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q8" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q8" value="4">
+                                <label>Sering berkumpul dengan orang lain</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q8" value="5">
+                                <label>Saya lebih suka berkumpul dengan teman atau keluarga untuk mengisi energi</label>
+                            </div>
+                        </article>                        
+                    </div>
+                    <!-- pertanyaan ke delapan -->
+                </div>
+                    
+                <div class="styleformulir">
+                    <!-- pertanyaan ke sembilan-->
+                    <div class="form-bagian">
+                        <label for="question9">9. Seberapa penting waktu sendiri bagi Anda untuk merasa tenang dan bersemangat kembali?<br>
+                            1: Sangat penting, saya perlu waktu sendiri secara teratur <br>
+                            5: Tidak terlalu penting, saya lebih suka menghabiskan waktu bersama orang lain
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q9" value="1">
+                                <label>Sangat penting, saya perlu waktu sendiri secara teratur</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q9" value="2">
+                                <label>Jarang merasa perlu waktu sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q9" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q9" value="4">
+                                <label>Sering menghabiskan waktu sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q9" value="5">
+                                <label>Tidak terlalu penting, saya lebih suka menghabiskan waktu bersama orang lain</label>
+                            </div>
+                        </article>                        
+                    </div>
+                    <!-- pertanyaan ke sembilan -->
+                </div>
+                    
+                <div class="styleformulir">
+                    <!-- pertanyaan ke sepuluh-->
+                    <div class="form-bagian">
+                        <label for="question10">10. Apakah Anda merasa terdorong untuk berbicara lebih banyak ketika ada banyak orang di sekitar Anda?<br>
+                            1: Tidak, saya cenderung diam dan lebih memperhatikan <br>
+                            5: Ya, saya semakin banyak berbicara ketika ada banyak orang
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q10" value="1">
+                                <label>Tidak, saya cenderung diam dan lebih memperhatikan</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q10" value="2">
+                                <label>Jarang berbicara dalam keramaian</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q10" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q10" value="4">
+                                <label>Sering berbicara dengan orang lain</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q10" value="5">
+                                <label>Ya, saya semakin banyak berbicara ketika ada banyak orang</label>
+                            </div>
+                        </article>                        
+                    </div>
+                    <!-- pertanyaan ke sepuluh -->
+                </div>
+                    
+                <div class="styleformulir">
+                    <!-- pertanyaan ke sebelas-->
+                    <div class="form-bagian">
+                        <label for="question11">11. Seberapa penting interaksi sosial bagi Anda untuk merasa bahagia dan puas?<br>
+                            1: Tidak terlalu penting, saya lebih bahagia dengan aktivitas pribadi <br>
+                            5: Sangat penting, saya merasa lebih bahagia ketika sering bersosialisasi
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q11" value="1">
+                                <label>Tidak terlalu penting, saya lebih bahagia dengan aktivitas pribadi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q11" value="2">
+                                <label>Jarang merasa perlu bersosialisasi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q11" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q11" value="4">
+                                <label>Sering merasa perlu untuk bersosialisasi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q11" value="5">
+                                <label>Sangat penting, saya merasa lebih bahagia ketika sering bersosialisasi</label>
+                            </div>
+                        </article>                        
+                    </div>
+                    <!-- pertanyaan ke sebelas -->
+                </div>
+
+                <div class="styleformulir">
+                    <!-- pertanyaan ke duabelas-->
+                    <div class="form-bagian">
+                        <label for="question12">12. Bagaimana Anda merasa ketika Anda harus menghabiskan waktu sendirian selama beberapa hari?<br>
+                            1: Saya merasa sangat nyaman dan senang <br>
+                            5: Saya merasa sangat kesepian dan gelisah
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q12" value="1">
+                                <label>Saya merasa sangat nyaman dan senang</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q12" value="2">
+                                <label>Jarang merasa nyaman</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q12" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q12" value="4">
+                                <label>Sering merasa tidak nyaman</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q12" value="5">
+                                <label>Saya merasa sangat kesepian dan gelisah</label>
+                            </div>
+                        </article>                        
+                    </div>
+                    <!-- pertanyaan ke duabelas -->
+                </div>
+                    
+                <div class="styleformulir">
+                    <!-- pertanyaan ke tigabelas-->
+                    <div class="form-bagian">
+                        <label for="question13">13. Seberapa sering Anda merasa harus mencari kegiatan sosial agar tidak bosan?<br>
+                            1: Jarang, saya lebih suka melakukan hal-hal sendiri <br>
+                            5: Sering, saya merasa perlu berinteraksi agar tidak merasa bosan
+                        </label><br> <br>
+                        <article class="quest-form-psi">
+                            <div class="radio-option">
+                                <input type="radio" name="q13" value="1">
+                                <label>Jarang, saya lebih suka melakukan hal-hal sendiri</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q13" value="2">
+                                <label>Jarang merasa perlu berinteraksi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q13" value="3">
+                                <label>Netral</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q13" value="4">
+                                <label>Sering merasa perlu berinteraksi</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="q13" value="5">
+                                <label>Sering, saya merasa perlu berinteraksi agar tidak merasa bosan</label>
+                            </div>
+                        </article>                        
+                    </div>
+                    <!-- pertanyaan ke tigabelas -->
+                </div>
+                    <div>
+                        <button onclick="testPsikologi(event)">Kirim</button>
+                    </div>
+                </form>
+            </section>
+
+            <button class="new-list-btn" id="tombolAddTugas" id="openPopupButton" onclick="openPopup()">Tambahkan Tugas</button>
+            <!-- <button class="new-list-btn" id="tombolAddKegiatan" id="openKegiatanPopupButton" onclick="openKegiatanPopup()">Tambahkan Kegiatan</button> -->
+        </main>
+
+ <!-- Sidebar Detail Tugas -->
+ <div id="task-details" class="task-details hidden">
+    <header class="task-desk">
+        <button id="close-details-btn" class="close-btn">&times;</button> <!-- Tombol untuk menutup -->
+        <div class="title-side">
+            <h3 id="task-title">Pilih tugas untuk melihat detail</h3>
+        </div>
+    </header>
+    <section class="task-info">
+        <p id="task-deadline" class="task-meta"></p>
+        <p id="task-description" class="task-meta"></p>
+
+        <div class="task-buttons">
+            <!-- fitur selanjutnya dari tombol ingatkan saya -->
+            <div class="reminder-details">
+                <button class="task-action-btn" onclick="toggleDropdown()">Ingatkan saya</button>
+                <div id="reminder-dropdown" style="display: none;">
+                    <div  style="position: absolute; background:#333333; padding-right:1rem; border-color: #fff;">                        
+                        <span class="melayang">
+                            <button onclick="setReminder('Akhir Hari')">Akhir Hari (18:00)</button>
+                            <button onclick="setReminder('Besok Pagi')">Besok (09:00)</button>
+                            <button onclick="setReminder('Minggu Depan')">Minggu Depan</button>
+                            <!-- <label for="custom-date">Pilih Hari dan Jam:</label>
+                            <input class="task-action-btn" type="datetime-local" id="custom-date" onchange="setCustomReminder()"> -->
+                            <!-- Pilihan waktu dengan Flatpickr -->
+                            <label for="time-picker">Pilih Waktu Pengingat:</label>
+                            <input id="time-picker" class="time-picker" placeholder="Pilih Waktu" readonly>
+                        </span>
+                    </div>
+                </div>
+              </div>
+
+            <!-- ini untuk menambahkan deskripsi -->
+            <button onclick="catatan()" class="task-action-btn add-note-btn">Tambahkan catatan</button>
+
+            <!-- div untuk extend fitur dropNote -->
+            <div id="note-section" class="note-section">
+                <div class="input-note">
+                    <input placeholder="Masukkan deskripsi tugas" id="note-input" type="textarea"> <br>
+                </div>
+                <button id="save-note-btn" class="save-note-btn">Simpan</button>
+                <button id="back-note-btn" onclick="catatan()" class="close">Kembali</button>
+            </div>
+
+            <button onclick="rekomendasiBtn()" id="edit-details-btn" class="task-action-btn edit-btn">Rekomendasi Menyelesaikan Tugas</button>
+
+
+
+            <button id="hapus-btn" class="task-action-btn" style="background-color:#03b026">Tugas Selesai</button>
+
+
+
+              
+        </div>
+
+ <!-- Sidebar Detail Kegiatan -->
+ <div id="kegiatan-details" class="task-details hidden">
+    <header class="task-desk">
+        <button id="close-details-btn" class="close-btn">&times;</button> <!-- Tombol untuk menutup -->
+        <div class="title-side">
+            <h3 id="kegiatan-title">Pilih tugas untuk melihat detail</h3>
+        </div>
+    </header>
+    <section class="task-info">
+        <p id="kegiatan-tanggal" class="task-meta"></p>
+        <p id="kegiatan-description" class="task-meta"></p>
+
+        <div class="task-buttons">
+
+            <!-- ini untuk menambahkan deskripsi -->
+            <button onclick="catatan()" class="task-action-btn add-note-btn">Tambahkan catatan</button>
+
+            <!-- div untuk extend fitur dropNote -->
+            <div id="note-section" class="note-section">
+                <div class="input-note">
+                    <input placeholder="Masukkan deskripsi tugas" id="note-input" type="textarea"> <br>
+                </div>
+                <button id="save-note-btn" class="save-note-btn">Simpan</button>
+                <button id="back-note-btn" onclick="catatan()" class="close">Kembali</button>
+            </div>
+
+            <button onclick="rekomendasiBtn()" id="edit-details-btn" class="task-action-btn edit-btn">Rekomendasi Menyelesaikan Tugas</button>
+
+
+
+            <button id="hapus-btn" class="task-action-btn" style="background-color:#03b026">Tugas Selesai</button>
+
+
+
+              
+        </div>
+
+    </section>
+    
+
+    
+    <!-- ini untuk next popup div untuk rekomendasi -->
+    <div id="rekomendasi" class="rekomendasi" style="display: block">
+        <header class="deskripsi">
+            <span class="deskripsi">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus praesentium ea officiis, delectus voluptatum eligendi. Beatae porro dicta, laudantium accusantium eius consectetur veritatis ullam pariatur, reprehenderit placeat soluta hic delectus.  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium quo voluptas quam, aut et repellat officiis nobis explicabo itaque culpa, saepe iusto eius vitae tempore, maxime tenetur fuga. Voluptatum, veniam? . Lorem ipsum dolor sit amet consectetur adipisicing elit. A, nisi, amet eum quo unde natus quod animi distinctio dolores nostrum ut excepturi ipsa atque hic exercitationem autem voluptate perspiciatis sit!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reprehenderit nesciunt, ad molestiae dolores est ea fuga impedit aut fugit magnam voluptates nobis omnis aperiam dolorem provident quam, aliquam consequuntur.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus praesentium ea officiis, delectus voluptatum eligendi. Beatae porro dicta, laudantium accusantium eius consectetur veritatis ullam pariatur, reprehenderit placeat soluta hic delectus.  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium quo voluptas quam, aut et repellat officiis nobis explicabo itaque culpa, saepe iusto eius vitae tempore, maxime tenetur fuga. Voluptatum, veniam? . Lorem ipsum dolor sit amet consectetur adipisicing elit. A, nisi, amet eum quo unde natus quod animi distinctio dolores nostrum ut excepturi ipsa atque hic exercitationem autem voluptate perspiciatis sit!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reprehenderit nesciunt, ad molestiae dolores est ea fuga impedit aut fugit magnam voluptates nobis omnis aperiam dolorem provident quam, aliquam consequuntur.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus praesentium ea officiis, delectus voluptatum eligendi. Beatae porro dicta, laudantium accusantium eius consectetur veritatis ullam pariatur, reprehenderit placeat soluta hic delectus.  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium quo voluptas quam, aut et repellat officiis nobis explicabo itaque culpa, saepe iusto eius vitae tempore, maxime tenetur fuga. Voluptatum, veniam? . Lorem ipsum dolor sit amet consectetur adipisicing elit. A, nisi, amet eum quo unde natus quod animi distinctio dolores nostrum ut excepturi ipsa atque hic exercitationem autem voluptate perspiciatis sit!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reprehenderit nesciunt, ad molestiae dolores est ea fuga impedit aut fugit magnam voluptates nobis omnis aperiam dolorem provident quam, aliquam consequuntur.</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus praesentium ea officiis, delectus voluptatum eligendi. Beatae porro dicta, laudantium accusantium eius consectetur veritatis ullam pariatur, reprehenderit placeat soluta hic delectus.  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium quo voluptas quam, aut et repellat officiis nobis explicabo itaque culpa, saepe iusto eius vitae tempore, maxime tenetur fuga. Voluptatum, veniam? . Lorem ipsum dolor sit amet consectetur adipisicing elit. A, nisi, amet eum quo unde natus quod animi distinctio dolores nostrum ut excepturi ipsa atque hic exercitationem autem voluptate perspiciatis sit!. Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam reprehenderit nesciunt, ad molestiae dolores est ea fuga impedit aut fugit magnam voluptates nobis omnis aperiam dolorem provident quam, aliquam consequuntur.</p>
+            </span>
+        </header>
+        <section class="btnBack">
+            <div class="close">
+                <button onclick="rekomendasiBtn()">kembali</button>
+            </div>
+        </section>
+    </div>
+    <!-- ini untuk next popup div untuk rekomendasi -->
+</div>
+
+    <!-- ini  bagian POP UP PSIKOLOGI -->
+    <!-- ini  bagian POP UP PSIKOLOGI -->
+    <div id="new-psikologi-div" class="new-psikologi-div" style="display: none;">
+        <div class="new-full-container">
+            <div class="new-header-container">
+                <header class="new-ini-selesai">
+                    <h3 class="new-test-psikologi-text">Test Psikologi Selesai</h3>
+                    <p id="new-result"></p>
+                </header>
+            </div>
+            
+            <div class="new-task-container">
+                <div class="new-task checked">
+                    <div class="new-checkmark"></div>
+                    <span></span>
+                </div>
+            </div>
+            <div class="new-button-container">
+                <button class="new-button-validasi" onclick="newClosePopUpAlert()">OK</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <!-- ini  bagian POP UP PSIKOLOGI -->
+    <!-- ini  bagian POP UP PSIKOLOGI -->
+
+
+
+
+
+
+
+    <!-- berhasil submit test psikologi-->
+    <div id="psikologi-div" class="psikologi-div" style="display: none;">
+        <div class="full-container">
+            <div class="header-container">
+                <header class="ini-selesai">
+                    <h3 class="test-psikologi-text"> Test Psikologi Selesai</h3>
+                    <p id="result"></p>
+                </header>
+            </div>
+            
+            <div class="task-container">
+                <div class="task checked">
+                    <div class="checkmark"></div>
+                    <span></span>
+                </div>
+            </div>
+            <div class="button-container">
+                <button class="button-validasi" onclick="closePopUpAllert()">OK</button>
+            </div>
+        </div>
+    </div>
+    <!-- berhasil submit test psikologi -->
+
+    <script src="premium.js"></script>
+    <script src="js/reminder.js"></script>
+    <script src="js/noted.js"></script>
+    <script src="js/rekomendasi.js"></script>
+    <script src="js/psikologi.js"></script>
+
+</body>
+</html>
